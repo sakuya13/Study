@@ -2,6 +2,7 @@ MONTHLY_INTEREST_RATE = 0.15 / 12
 REPAYMENTS_RATE = 0.06
 DOWN_PAYMENT_RATE = 0.12
 
+
 def main():
     """
     main takes input from user and calls header and repayments_table.
@@ -9,6 +10,7 @@ def main():
     purchase_price = float(input("Enter purchase price ($): "))
     header()
     repayments_table(purchase_price)
+
 
 def repayments_table(purchase_price):
     """
@@ -32,11 +34,12 @@ def repayments_table(purchase_price):
             principal = repayments - interest
             closing_bal = opening_bal + interest - repayments
             closing_bal = round(closing_bal, 2)
-        print(formats(month, opening_bal, interest, principal, \
-                          repayments, closing_bal))
+        print(formats(month, opening_bal, interest, principal,
+              repayments, closing_bal))
         month += 1
         opening_bal = closing_bal
-      
+
+
 def formats(month, opening_bal, interest,\
             principal, repayments, closing_bal):
     """
@@ -50,17 +53,18 @@ def formats(month, opening_bal, interest,\
            " {:<9.2f} ".format(repayments) + "|" +\
            " {:<11.2f} ".format(closing_bal)
 
+
 def header():
     """
     header formats and prints the header of the repayments table.
     """
     line = "-" * (7 + 1 + 13 + 1 + 10 + 1 + 11 + 1 + 11 + 1 + 13)
     column_name = " {:<5} ".format("Month") + "|" +\
-                 " {:<11} ".format("Opening Bal") + "|" +\
-                 " {:<8} ".format("Interest") + "|" +\
-                 " {:<9} ".format("Principal") + "|" +\
-                 " {:<9} ".format("Repayment") + "|" +\
-                 " {:<11} ".format("Closing Bal")
+                  " {:<11} ".format("Opening Bal") + "|" +\
+                  " {:<8} ".format("Interest") + "|" +\
+                  " {:<9} ".format("Principal") + "|" +\
+                  " {:<9} ".format("Repayment") + "|" +\
+                  " {:<11} ".format("Closing Bal")
     print(line)
     print(column_name)
     print(line)

@@ -14,6 +14,7 @@ def main():
         print("Mean:", mean)
     else:
         print("Error: invalid character \"" + unexpected_char + "\"")
+
         
 def filter_unexpected_char(string):
     """
@@ -24,6 +25,7 @@ def filter_unexpected_char(string):
         if not char.isdigit() and char != " ":
             return char
     return ""
+
 
 def convert_to_int(string):
     """
@@ -36,6 +38,7 @@ def convert_to_int(string):
         if char != "":
             integer_list.append(int(char))
     return integer_list
+
 
 def sum_and_mean(integer_list):
     """

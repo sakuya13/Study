@@ -16,6 +16,7 @@ def find_repeat_substring(string):
         i += 1
     return -1, string
 
+
 def main():
     """
     main takes input from user and prints the returned value of 
@@ -24,11 +25,11 @@ def main():
     string = input('Enter string: ')
     number_of_repetitions, sub_string = find_repeat_substring(string)
     if number_of_repetitions > 0:
-        print('Congratulations, "' + string + '" is made up of ' +\
-               str(number_of_repetitions) + ' repetitions of "'\
-                + sub_string + '"')
+        print('Congratulations, "' + string + '" is made up of ' +
+              str(number_of_repetitions) + ' repetitions of "' + sub_string + 
+              '"')
     else:
-        print('Bummer, "' + string +\
-                '" is not made up of repetitions of a substring')
+        print('Bummer, "' + string +
+              '" is not made up of repetitions of a substring')
         
 main()

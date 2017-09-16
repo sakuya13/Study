@@ -6,7 +6,9 @@ def main():
     if equilateral(length):
         print("The triangle is an equilateral triangle.")
     else:
-        print("Sadly, the triangle is not equilateral. Find a better triangle.")
+        print("Sadly, the triangle is not equilateral.\
+        Find a better triangle.")
+
 
 def equilateral(length):
     """
@@ -15,6 +17,6 @@ def equilateral(length):
     """
     length_list = [int(x) for x in length.split()]
     return length_list[0] == length_list[1]\
-           and length_list[0] == length_list[2]
+        and length_list[0] == length_list[2]
 
 main()

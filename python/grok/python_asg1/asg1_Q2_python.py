@@ -7,6 +7,7 @@ def main():
     print("The number contains", count, "digits")
     print("The digits sum to", sums)
 
+
 def count_digit(n):
     """
     count_digit takes a number in str type and returns count and sums 
