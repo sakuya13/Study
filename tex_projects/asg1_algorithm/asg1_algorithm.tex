@@ -39,16 +39,28 @@ Student No.: 843643}
 \begin{enumerate}
 \item
 %1(a)
-According to the Master Theorem, with $T(n)=2\cdot T(n/2)+1$, we have $a=2, b=2, f(n)=1$, thus we have $d=0$. With $T(1)=1$, we compare $a$ with $b^d$, then we have $a>b^d$. Thus, $T(n) \in \Theta(n^{log_2 2})=\Theta(n)$.
+According to the Master Theorem, with $T(n)=2\cdot T(n/2)+1$,
+we have $a=2, b=2, f(n)=1$, thus we have $d=0$. With $T(1)=1$, 
+we compare $a$ with $b^d$, then we have $a>b^d$. Thus, $T(n) \in \Theta(n^{log_2 2})=\Theta(n)$.
 
 \item
 %1(b)
-According to telescoping, we have $T(n)=2\cdot T(n)+1=2\cdot (2\cdot T(n/4)+1)+1=4\cdot (2\cdot T(n/8)+1)+2+1$. Thus, according to smoothness rule, we conclude a similar form of the equation, that is: $T(n)=2^k\cdot T(n/2^k)+2^k-1, (k \in [0, {log_2 n}])$. When $n=2^k$, we have $T(1)=1$, thus we have $T(n)=2\cdot n-1$.
+According to telescoping, 
+we have $T(n)=2\cdot T(n)+1=2\cdot (2\cdot T(n/4)+1)+1=4\cdot (2\cdot T(n/8)+1)+2+1$. 
+Thus, according to smoothness rule, we conclude a similar form of the equation, 
+that is: $T(n)=2^k\cdot T(n/2^k)+2^k-1, (k \in [0, {log_2 n}])$. When $n=2^k$, 
+we have $T(1)=1$, thus we have $T(n)=2\cdot n-1$.
 \item
 %1(c)
 I don't agree with the argument.
 
-There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can have $T(n)=2\cdot k \cdot n/2+1$. We can find that $T(n)=2\cdot k \cdot n/2+1 \leq k \cdot n$ is clearly false. Thus, the hidden assumption $T(n)=k\cdot n$ is false. According to the question, from $T(n)\in \Theta(n)$, we should have $T(n)\leq k\cdot n$ but not $T(n)=k\cdot n$. Therefore, we can't have $T(n)=2\cdot k \cdot n/2+1$ and also $2\cdot k \cdot n/2+1 \leq k\cdot n$. Hence we can't have $T(n)\notin \Theta(n)$.
+There's a hidden assumption in the question that $T(n)=k\cdot n$. 
+Thus, it can have $T(n)=2\cdot k \cdot n/2+1$. 
+We can find that $T(n)=2\cdot k \cdot n/2+1 \leq k \cdot n$ is clearly false. 
+Thus, the hidden assumption $T(n)=k\cdot n$ is false. According to the question, 
+from $T(n)\in \Theta(n)$, we should have $T(n)\leq k\cdot n$ but not $T(n)=k\cdot n$. 
+Therefore, we can't have $T(n)=2\cdot k \cdot n/2+1$ and also $2\cdot k \cdot n/2+1 \leq k\cdot n$. 
+Hence we can't have $T(n)\notin \Theta(n)$.
 ~
 \end{enumerate}
 ~
@@ -108,7 +120,13 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \EndFunction
 \end{algorithmic}
 %\end{algorithm}
-\textbf{Complexity Analysis:} In the worst case, the basic operation in this algorithm is the comparisons: whether $s[i] =$ \textquotedblleft A" and $s[i] =$ \textquotedblleft C" or not. The comparisons will conduct once each time when i increment 1 in the for loop. The for loop only iterate once from 0 to n-1. Thus, $C(n)\in O(n), n = |s|$ which is the size of the string, the complexity of the algorithm is linear in $|s|$.
+\textbf{Complexity Analysis:} In the worst case, 
+the basic operation in this algorithm is the comparisons: 
+whether $s[i] =$ \textquotedblleft A" and $s[i] =$ \textquotedblleft C" or not. 
+The comparisons will conduct once each time when i increment 1 in the for loop. 
+The for loop only iterate once from 0 to n-1. 
+Thus, $C(n)\in O(n), n = |s|$ which is the size of the string, 
+the complexity of the algorithm is linear in $|s|$.
 
 \end{enumerate}
 ~
@@ -142,7 +160,15 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \EndFunction
 \end{algorithmic}
 %\end{algorithm}
-\textbf{Complexity Analysis:} To find the distance of all other nodes to v, one have to traverse all the nodes and edges in the graph. Considering we are using an adjacency list, which contain only an array of nodes and each node's edge to their neighbour, the size of the adjacency list should be $|V| + |E|$. Considering the iterator will revisit the nodes that it has been visited for at most once in this algorithm, the complexity of this algorithm should be $C(n)\in \Theta(|V|+2|E|)$, which runs linear in the size of the graph.
+\textbf{Complexity Analysis:} To find the distance of all other nodes to v, 
+one have to traverse all the nodes and edges in the graph. 
+Considering we are using an adjacency list, 
+which contain only an array of nodes and each node's edge to their neighbour, 
+the size of the adjacency list should be $|V| + |E|$. 
+Considering the iterator will revisit the nodes that it has 
+been visited for at most once in this algorithm, 
+the complexity of this algorithm should be $C(n)\in \Theta(|V|+2|E|)$, 
+which runs linear in the size of the graph.
 \bigskip \\
 %3(b)
 \item
@@ -156,7 +182,8 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 	\State create an array $hub$
 	\State $minRemoteness\gets \infty$
 	\For{each vertex $v$ \textbf{in} $V$}
-		\State $dist\gets$ \textsc{Distance}($\langle V, E\rangle, v$)\Comment{Call function \textsc{Distance} and store the returned value to array $dist$}
+		\State $dist\gets$ \textsc{Distance}($\langle V, E\rangle, v$)\Comment{Call 
+		function \textsc{Distance} and store the returned value to array $dist$}
 		\State $maxDistance\gets 0$
 		\For{$j\gets 1$ \textbf{to} $n$}
 			\If{$dist[j]\geq maxDistance$}
@@ -172,7 +199,12 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \EndFunction
 \end{algorithmic}
 %\end{algorithm}
-\textbf{Complexity Analysis:} Every time we call this function, it calls function \textsc{Distance}, which runs in linear, that is $\Theta(n)$ times. The basic operation of the algorithm is the comparison: whether $dist[j]\geq maxDistance$ or not, which conduct n times, plus one comparison between $maxDistance ≤ minRemotness$, altogether $n+1$ times. These comparisons conduct $n$ times, in which n is the number of nodes. Therefore, in the worst case the complexity of this algorithm is $C(n)\in n(n-1)=O(n^2)$.
+\textbf{Complexity Analysis:} Every time we call this function, it 
+calls function \textsc{Distance}, which runs in linear, that is $\Theta(n)$ times. 
+The basic operation of the algorithm is the comparison: whether $dist[j]\geq maxDistance$ or not, 
+which conduct n times, plus one comparison between $maxDistance ≤ minRemotness$, 
+altogether $n+1$ times. These comparisons conduct $n$ times, in which n is the number of nodes. 
+Therefore, in the worst case the complexity of this algorithm is $C(n)\in n(n-1)=O(n^2)$.
 \end{enumerate}
 ~
 %4(a)
@@ -191,7 +223,8 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 		\For{$j\gets 1$ \textbf{to} $n$}
 			\If{$k \neq j$}
 			\EndIf 
-			\If{$A[k, j] = 0$ \textbf{and} $A[j, k] = 1$}\Comment{Check if $\forall j, (k, j) \notin E$ and $(j, k) \in E$}
+			\If{$A[k, j] = 0$ \textbf{and} $A[j, k] = 1$}\Comment{Check 
+			if $\forall j, (k, j) \notin E$ and $(j, k) \in E$}
 				\State $i\gets k$
 			\Else
 				\State $i\gets -1$
@@ -207,7 +240,12 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \end{algorithmic}
 %\end{algorithm}
 
-\textbf{Complexity Analysis:} There are all together $n$ nodes in the adjacency matrix. Thus, the size of the adjacency matrix is $n^2$. The basic operations are the two comparisons whether $A[k, j] = 0$ and $A[j, k] = 1$ or not. In the worst case, one can't find a sink in a graph. This algorithm will iterate every cell in the adjacency matrix and in each iteration compare twice. Thus, the worst case complexity $C(n)\in O(2n^2)=O(n^2)$.
+\textbf{Complexity Analysis:} There are all together $n$ nodes in the adjacency matrix. 
+Thus, the size of the adjacency matrix is $n^2$. 
+The basic operations are the two comparisons whether $A[k, j] = 0$ and $A[j, k] = 1$ or not. 
+In the worst case, one can't find a sink in a graph. 
+This algorithm will iterate every cell in the adjacency matrix and in each iteration compare twice. 
+Thus, the worst case complexity $C(n)\in O(2n^2)=O(n^2)$.
 \bigskip \\
 %4(b)
 \item
@@ -225,11 +263,12 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 		\If{A[i, j] = 1}\Comment{Check if $\exists j \in V$ with $(i,j) \in E$}
 			\State $i\gets i+1$\Comment{If true move to the next row}
 		\Else
-			\State $j\gets j+1$\Comment{Else keep on iterating in the sam row}
+			\State $j\gets j+1$\Comment{Else keep on iterating in the same row}
 		\EndIf
 	\EndWhile
 	\State \textbf{return} $i$
-	\If{\textsc{IsAttractor}($A[\cdot,\cdot], i$) = \emph{true}}\Comment{Call function \textsc{IsAttractor} to check if the returned node is an \emph{attractor}}
+	\If{\textsc{IsAttractor}($A[\cdot,\cdot], i$) = \emph{true}}\Comment{Call 
+	function \textsc{IsAttractor} to check if the returned node is an \emph{attractor}}
 		\State \textbf{return} $i$
 	\Else
 		\State \textbf{return} $-1$
@@ -245,7 +284,8 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \Function{IsAttractor}{$A[\cdot,\cdot], i$}
 	\State //This function is used to check if a given node $i$ is an attractor
 	\State //\textbf{Input:} The adjacency matrix A, a given node $i$
-	\State //\textbf{Output:} \emph{true} if the node $i$ is an \emph{attractor}, \emph{false} if it isn't an \emph{attractor}
+	\State //\textbf{Output:} \emph{true} if the node $i$ is an \emph{attractor}, \emph{false} 
+	if it isn't an \emph{attractor}
 	\For{$k\gets 1$ \textbf{to} $n$}
 		\If{$A[i, k]\neq 0$}\Comment{Check if $\forall k, (i, k) \notin E$}
 			\State \textbf{return} \emph{false}
@@ -262,7 +302,17 @@ There's a hidden assumption in the question that $T(n)=k\cdot n$. Thus, it can h
 \EndFunction
 \end{algorithmic}
 %\end{algorithm}
-\textbf{Complexity Analysis:} There are all together $n$ nodes in the adjacency matrix. The complexity of function \textsc{IsAttractor} is $c(n)\in \Theta(2n-1)$, because we only iterate one row and one column(except the node itself when iterating the column) of the matrix with the size n. The worst case complexity of the function \textsc{FindAttractor} is also $c(n)\in O(2n)$, because in the worst case, the iterator may have to skip every row until the last row and iterate all items in the last row, which is $2n$ times of iterations. In the worst case($i=|V|$), everytime we call the function \textsc{FindAttractor}, we must also call the function \textsc{IsAttractor}. Hence, the worst case complexity for function \textsc{IsAttractor} is $C(n)\in O(4n-1)=O(n)$, which runs in linear time.
+\textbf{Complexity Analysis:} There are all together $n$ nodes in the adjacency matrix. 
+The complexity of function \textsc{IsAttractor} is $c(n)\in \Theta(2n-1)$, 
+because we only iterate one row and one column(except the node itself when iterating the column) 
+of the matrix with the size n. The worst case complexity of the function \textsc{FindAttractor} 
+is also $c(n)\in O(2n)$, because in the worst case, 
+the iterator may have to skip every row until the last row and iterate all items in the last row,
+which is $2n$ times of iterations. In the worst case($i=|V|$), 
+everytime we call the function \textsc{FindAttractor}, 
+we must also call the function \textsc{IsAttractor}. 
+Hence, the worst case complexity for function \textsc{IsAttractor} is $C(n)\in O(4n-1)=O(n)$, 
+which runs in linear time.
 \end{enumerate}
 
 \end{enumerate}
