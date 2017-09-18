@@ -9,6 +9,7 @@ matrix = [
 ]
 n = len(matrix)
 
+
 def attractor(A, n):
     i = 0
     for k in range(n):
@@ -22,6 +23,7 @@ def attractor(A, n):
         if i != 0:
                 return i
     return 0
+
 
 def main():
     print(attractor(matrix, n))

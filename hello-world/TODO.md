@@ -2,7 +2,7 @@
     - [ ] algorithm asg2:
     - [ ] python asg2:
     - [ ] op asg2:
-    - [ ] ict asg2:
+    - [ ] ict asg2: 9 Oct
     - [ ] 
 - **exams**
 
@@ -19,7 +19,7 @@
 ## title2
 
 ```
-for i in range(10):
+woe e in range(10):
     cat is fat
 ```
 ```cat is small```
