@@ -11,9 +11,9 @@ def top5_words(text):
     print(tally.values())
     tally_item = tally.items()
     s = sorted(tally_item, key=lambda item: item[0])
-    #print(s)
+    # print(s)
     sorted_list = sorted(s, key=lambda item: item[1], reverse=True)
-    #print(sorted_list)
+    # print(sorted_list)
     top5_list = []
     sorted_list_length = len(sorted_list)
     if sorted_list_length < 5:
