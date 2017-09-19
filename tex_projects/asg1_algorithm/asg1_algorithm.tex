@@ -80,7 +80,7 @@ Hence we can't have $T(n)\notin \Theta(n)$.
 		\If{$s[i] =$ \textquotedblleft A"}
 			\For{$j\gets i+1$ \textbf{to} $n-1$}
 				\If{$s[j] =$ \textquotedblleft C"}
-					\State $count\gets sum+1$
+					\State $count\gets count+1$
 				\EndIf
 			\EndFor
 		\EndIf
@@ -142,7 +142,7 @@ the complexity of the algorithm is linear in $|s|$.
 	\State //\textbf{Input:} Graph $G = \langle V, E\rangle$, node $v$
 	\State //\textbf{Output:} An array $dist$ recoding all the other nodes' distance from v
 	\State creat an array $dist$ of length $n$, index the array with all the nodes' indexes
-	\For{each nodes in }
+	\For{each nodes in $V$}
 		\State $dist[i]\gets \infty$
 		\State $dist[v]\gets 0$
 	\EndFor

@@ -1,4 +1,6 @@
 SHIFT_RANGE = 3
+
+
 def main():
     s = input('Enter integer: ')
     lst = s.split()
@@ -7,6 +9,7 @@ def main():
     lst1 = [int(x) for x in lst]
     shift(lst1)
     print(lst1)
+
 
 def shift(lst):
     for j in range(SHIFT_RANGE):
