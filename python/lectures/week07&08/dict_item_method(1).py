@@ -1,6 +1,6 @@
 employee_record = {'name': 'kevin', 'Age': 43, 'ID':23145, 'payrate':24.99}
 employee_record = {'name': [1, 2, 3, 4], 'Age': [43, 23, 34, 45],
-                'ID':23145, 'payrate':24.99}
+                   'ID': 23145, 'payrate': 24.99}
 # one way of getting all elements
 for key, value in employee_record.items():
     print(key, value)
