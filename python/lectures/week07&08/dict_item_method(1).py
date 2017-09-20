@@ -1,11 +1,17 @@
-employee_record = {'name': 'kevin', 'Age': 43, 'ID':23145, 'payrate':24.99}
-employee_record = {'name': [1, 2, 3, 4], 'Age': [43, 23, 34, 45],
-                   'ID': 23145, 'payrate': 24.99}
+employee_record = {'name': 'kevin',
+                   'Age': 43,
+                   'ID':23145,
+                   'payrate':24.99
+                  }
+employee_record2 = {'name': [1, 2, 3, 4],
+                   'Age': [43, 23, 34, 45],
+                   'ID': 23145,
+                   'payrate': 24.99
+                  }
 # one way of getting all elements
 for key, value in employee_record.items():
     print(key, value)
-
-#another way
+# another way
 for key in employee_record:
     print(key, employee_record[key])
 
@@ -13,7 +19,7 @@ for key in employee_record:
 for key in employee_record.keys():
     print(key)
 
-#using the method keys
+# using the method keys
 for value in employee_record.values():
     print(value)
 
