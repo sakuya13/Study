@@ -1,8 +1,8 @@
 - **dues**
     - [ ] algorithm asg2:
-    - [ ] python asg2:
-    - [ ] op asg2:
-    - [ ] ict asg2: 9 Oct
+    - [ ] python asg2: 
+    - [ ] op asg2: pre:week11 report:week12
+    - [ ] ict asg2: 13 Oct
     - [ ] 
 - **exams**
 

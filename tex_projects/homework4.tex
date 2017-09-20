@@ -1,0 +1,345 @@
+\documentclass[11pt,twoside]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{xspace}
+
+% Commands for special characters
+\newcommand{\mybackslash}{\char'134}
+\newcommand{\myleftbracket}{\char'173}
+\newcommand{\myrightbracket}{\char'175}
+\newcommand{\mypercent}{\char'045}
+\newcommand{\myunderscore}{\char'137}
+
+% The 'ifthen' package supports Boolean flags
+\usepackage{ifthen}
+% The 'solutions' flag determines whether this is the original handout
+%    or a solution
+\newboolean{solutions}
+\setboolean{solutions}{False}  % Default is original handout
+
+% Uncomment the next line before starting on the solutions
+% \setboolean{solutions}{True}
+
+\newcommand{\coursenumber}{CS 3824}
+\newcommand{\coursetitle}{%
+Introduction to Computational Biology and Bioinformatics}
+\newcommand{\docdate}{October 2, 2014}
+\newcommand{\duedate}{October 25, 2014}
+\newcommand{\homeworknumber}{4}
+
+% The document title depends on whether these are solutions
+\ifthenelse{\boolean{solutions}}{% Then
+\newcommand{\doctitle}{Solutions to Homework Assignment \homeworknumber}
+}{% Else
+\newcommand{\doctitle}{Homework Assignment \homeworknumber}
+}
+
+% If you are the author, put your name here
+\renewcommand{\author}{Lenwood S. Heath}
+
+\pagestyle{myheadings}
+\markboth{\hfill\doctitle\hfill\docdate}{\docdate\hfill\doctitle\hfill}
+
+\addtolength{\textwidth}{1.20in}
+\addtolength{\textheight}{1.00in}
+\addtolength{\evensidemargin}{-1.10in}
+\addtolength{\oddsidemargin}{-0.10in}
+\addtolength{\topmargin}{-.50in}
+\setlength{\footskip}{0pt}
+
+\newcommand{\polyreduce}{\leq_{\mathrm{P}}}
+
+\newcounter{problem}
+\setcounter{problem}{0}
+\newcommand{\problem}[1]{%
+\refstepcounter{problem}\noindent\textbf{[#1] \arabic{problem}.}}
+
+\newcommand{\solution}{\bigskip\hrule\bigskip}
+\newcommand{\problembreak}{\bigskip\hrule\bigskip}
+
+\renewcommand{\theenumi}{\textbf{\Alph{enumi}}}
+\renewcommand{\theenumii}{\textbf{\roman{enumii}}}
+
+\newcommand{\emptystring}{\lambda}
+
+% Pseudocode comment symbol
+\newcommand{\comment}{$\rhd$\ \ }
+
+% Pseudocode line numbering
+\newcounter{pseudocode}
+\newcommand{\firstline}{\setcounter{pseudocode}{0}\linenumber}
+\newcommand{\linenumber}{\refstepcounter{pseudocode}\thepseudocode}
+
+\newcommand{\nil}{\mbox{\textsc{nil}}}
+
+% Mathematical symbols
+\newcommand{\integers}{\mathbb{Z}}  % Integers
+\newcommand{\naturals}{\mathbb{N}}  % Natural numbers
+\newcommand{\reals}{\mathbb{R}}  % Real numbers
+
+% Probability
+\newcommand{\expect}[1]{\mathbf{E}\left[#1\right]}
+\newcommand{\prob}[1]{\mathrm{Pr}\left[#1\right]}
+\newcommand{\var}[1]{\mathrm{Var}\left[#1\right]}
+
+% Logic
+\newcommand{\NOT}[1]{\neg #1}
+\newcommand{\AND}{\wedge}
+\newcommand{\OR}{\vee}
+\newcommand{\clause}[1]{\left(#1\right)}
+
+\newlength{\problemoffset}
+\setlength{\problemoffset}{0.5in}
+
+% Decision problem macro
+% A command for formatting decision problems a la Garey and Johnson
+\newcommand{\decision}[3]{%     \decision{NAME}{INSTANCE}{QUESTION}
+\begin{list}{}{
+\setlength{\leftmargin}{\problemoffset}
+\setlength{\rightmargin}{\problemoffset}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{2pt}
+\setlength{\topsep}{\itemsep}
+\setlength{\partopsep}{\itemsep}
+}
+\item
+{\textsc{#1}}
+\item
+{INSTANCE: #2}
+\item
+{QUESTION: #3}
+\end{list}
+}
+
+% Optimization problem macro
+\newcommand{\optimization}[3]{%  \optimization{NAME}{INSTANCE}{SOLUTION}
+\begin{list}{}{
+\setlength{\leftmargin}{\problemoffset}
+\setlength{\rightmargin}{\problemoffset}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{2pt}
+\setlength{\topsep}{\itemsep}
+\setlength{\partopsep}{\itemsep}
+}
+\item
+{\rule{0pt}{14pt}\textsc{#1}}
+\item
+{INSTANCE: #2}
+\item
+{SOLUTION: #3}
+\end{list}
+}
+
+% Table layout
+\newcommand{\toprule}{\rule[11pt]{0pt}{2pt}}
+\newcommand{\bottomrule}{\rule[-6pt]{0pt}{0pt}}
+\newenvironment{raggedpars}[1][2.0in]{%
+\begin{minipage}[t]{#1}\raggedright\toprule}%
+{\bottomrule\end{minipage}}
+
+% Dynamic programming macros
+\newlength{\arrowwidth}
+\setbox3=\hbox{$\nwarrow$}
+\setlength{\arrowwidth}{\wd3}
+\newcommand{\optnwarrow}[1]{\if1#1\nwarrow%
+\else\rule{\arrowwidth}{0pt}\fi}
+\newcommand{\optuparrow}[1]{\if1#1\uparrow%
+\else\rule{\arrowwidth}{0pt}\fi}
+\newcommand{\optleftarrow}[1]{\if1#1\leftarrow%
+\else\rule{\arrowwidth}{0pt}\fi}
+% Use \tablebox to specify any combination of arrows, plus the value
+\newcommand{\tablebox}[4]{%
+\setlength{\arraycolsep}{0.0pt}%
+\begin{array}{cc}%
+\optnwarrow{#1} & \optuparrow{#2} \\%
+\optleftarrow{#3} & #4%
+\end{array}%
+}
+% Use \tableboxred to specify any combination of arrows, plus the value
+% The value will be red; arrows are made red if 2 used instead of 1
+\newcommand{\optnwarrowred}[1]{\if1#1\nwarrow%
+\else\if2#1\textcolor{red}{\nwarrow}\else\rule{\arrowwidth}{0pt}\fi\fi}
+\newcommand{\optuparrowred}[1]{\if1#1\uparrow%
+\else\if2#1\textcolor{red}{\uparrow}\else\rule{\arrowwidth}{0pt}\fi\fi}
+\newcommand{\optleftarrowred}[1]{\if1#1\leftarrow%
+\else\if2#1\textcolor{red}{\leftarrow}\else\rule{\arrowwidth}{0pt}\fi\fi}
+\newcommand{\tableboxred}[4]{%
+\setlength{\arraycolsep}{0.0pt}%
+\begin{array}{cc}%
+\optnwarrowred{#1} &%
+\optuparrowred{#2} \\%
+\optleftarrowred{#3} &%
+\textcolor{red}{#4}%
+\end{array}%
+}
+
+% Definitions for this homework
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\begin{tabular}{lcr}
+\multicolumn{3}{c}{\Large\textbf{\coursenumber}}
+\\[0.04in]
+\multicolumn{3}{c}{\Large\textbf{\doctitle}}
+% If these are solutions, then include the author's (student's) name
+\ifthenelse{\boolean{solutions}}{% Then
+\\[0.04in]\multicolumn{3}{c}{\large\textbf{\author}}
+}{} % Else omit
+% If these are solutions, then the date is the due date
+\ifthenelse{\boolean{solutions}}{% Then
+\\[0.10in]\multicolumn{3}{c}{\duedate}
+}{% Else, put given and due dates
+\\[0.10in]
+\textbf{Given:} \docdate
+& \hspace*{1.0in} &
+\textbf{Due:} \duedate
+}
+\end{tabular}
+\end{center}
+
+% If these are solutions, then we do not include the directions
+\ifthenelse{\boolean{solutions}}{} % No directions
+{
+% Original document includes directions
+\begingroup % This allows an argument that contains multiple paragraphs
+\paragraph{General directions.}
+The point value of each problem is shown in [ ].
+Each solution must include all details and
+an explanation of why the given solution is correct.
+In particular,
+write complete sentences.
+A correct answer without an explanation is worth no credit.
+The completed assignment must be turned in
+as a PDF
+through Scholar by 5:00 PM on \duedate.
+\textbf{No late homework will be accepted.}
+
+\paragraph{Digital preparation of your solutions is mandatory.}
+Use of \LaTeX\ is optional, but encouraged.
+No matter how you prepare your homework,
+\textbf{please include your name.}
+
+\paragraph{Use of \LaTeX\ (optional, but encouraged).}
+\begin{itemize}
+\item Retrieve this \LaTeX\ source file,
+named
+\texttt{homework\homeworknumber.tex},
+from the course web site.
+\item Rename the file
+\textit{$<$Your VT PID$>$}\texttt{{\myunderscore}solvehw\homeworknumber.tex},
+For example,
+for the instructor,
+the file name would be
+\texttt{heath{\myunderscore}solvehw\homeworknumber.tex}.
+
+\item
+Use a \textbf{text editor}
+(such as \texttt{vi}, \texttt{emacs}, or \texttt{pico})
+to accomplish the next three steps.
+
+\item
+Uncomment the line
+
+\texttt{{\mypercent} 
+{\mybackslash}setboolean{\myleftbracket}solutions{\myrightbracket}%
+{\myleftbracket}True{\myrightbracket}}
+
+in the document preamble by deleting the \texttt{\mypercent}.
+
+\item
+Find the line
+
+\texttt{{\mybackslash}renewcommand%
+{\myleftbracket}{\mybackslash}author{\myrightbracket}%
+{\myleftbracket}Lenwood S. Heath{\myrightbracket}}
+
+and replace the instructor's name with your name.
+
+\item
+Enter your solutions where you find
+the \LaTeX\ comments
+
+\texttt{{\mypercent} PUT YOUR SOLUTION HERE}
+
+\item
+Convert your solutions to PDF
+and submit your solutions through Scholar by 5:00 PM on \duedate.
+\end{itemize}
+\endgroup
+
+\problembreak
+
+\newpage
+
+}
+
+\problem{50}
+\textbf{Knuth-Morris-Pratt.}
+
+Let
+\begin{eqnarray*}
+P & = & CGATTCGATTCGATACG
+\end{eqnarray*}
+be a pattern string,
+and
+let
+\begin{eqnarray*}
+T & = & TACGATTCGATTCGATACGATTACGATTCGATTCGATACGACG
+\end{eqnarray*}
+be a text string.
+Here,
+$m=17$
+and
+$n=43$.
+\begin{enumerate}
+
+\item
+Use the \textsc{Compute-Prefix-Function} algorithm
+discussed in class to compute the prefix function $\pi$
+for all positions in $P$
+
+\item
+Use the \textsc{KMP-Matcher} algorithm
+discussed in class to compute all occurrences of $P$ in $T$.
+
+\end{enumerate}
+Be certain to explain your work.
+
+\solution
+
+% PUT YOUR SOLUTION HERE
+
+\problembreak
+
+\problem{50}
+\textbf{Jones and Pevzner problem 9.8.}
+
+A \textit{repeat} in a string $S=S[1..n]$
+is a substring $\alpha$ of $S$ that occurs
+at at least two different positions in $S$.
+The occurrences may overlap,
+but they do not have to.
+Give an example of a string whose longest (exact) repeat
+has length 5.
+
+Give pseudocode for the resulting algorithm
+to find a longest (exact) repeat in $S$.
+You may use the construction of a suffix tree
+for a string of your choosing
+as a known subroutine.
+Argue that your algorithm has linear worst-case time complexity.
+
+\solution
+
+% PUT YOUR SOLUTION HERE
+
+\problembreak
+
+\end{document}
