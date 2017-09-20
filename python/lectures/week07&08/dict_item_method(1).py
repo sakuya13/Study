@@ -28,8 +28,8 @@ employee_record.values()  # it returns:
 # 'dict_values([[1, 2, 3, 4], [43, 23, 34, 45], 23145, 24.99])'
 
 # two ways of accessing the value of certain key
-employee_record['Age'][3]
-list(employee_record.values())[1][3]  # here we us list fuction because values 
+employee_record2['Age'][3]
+list(employee_record2.values())[1][3]  # here we us list fuction because values 
 # function returns a tuple
 
 # illustrate using the pop method
