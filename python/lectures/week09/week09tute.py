@@ -38,7 +38,7 @@ def add2(x, lst = None):
     return lst
 
 def call():
-    list1 = add1(1)  
+    list1 = add1(1)
     print(list1)
 
     list2 = add1(2)
