@@ -134,10 +134,12 @@ info['age'] = 13
 info['name'] = 'Kate'
 
 # 5.4.3 accessing values
+info.values
 info.get('job', None) # if 'job' exists, return its value, else, return default
 # value None.
 # alternative way to check whether a key exists.
 'job' in info
+
 
 # 5.4.4. removing keys
 info.pop('occupation', None) # works the same as accessing values.
@@ -145,7 +147,56 @@ info.pop('occupation', None) # works the same as accessing values.
 # 5.4.5 traversing
 info.items() # returns a list of tuple.
 # alternatively (with sorting of keys)
-keys = info.keys()
-keys.sort()
-for key in keys:
+info = {'name': 'Sandy', 'occupation': 'manager'}
+keys_list = sorted(info.keys())
+for key in keys_list:
     print(key, info[key])
+
+# 5.4.7 find the mode.
+def find_mode(lst):
+    dictionary = {}
+    for item in lst:
+        if dictionary.get(item, None) is None:
+            dictionary[item] = 1
+        else:
+            dictionary[item] += 1
+    # alternatively
+#    for item in lst:
+#        if item in dictionary:
+#            dictionary[item] += 1
+#        else:
+#            dictionary[item] = 1
+    maxvalue = 0
+    for value in dictionary.values():
+        if value > maxvalue:
+            maxvalue = value
+    for key in dictionary:
+        if dictionary[key] == maxvalue:
+            return key, dictionary[key]
+
+words = ['apple', 'apple', 'tree', 'fat', 'cat', 'cat', 'cat']
+print(find_mode(words))
+
+'''
+5.4 exercise
+2a: 20
+2b: None
+2c: 2
+2d: ['b', 'a']
+2e: [20, 35]
+2f: 20
+2g: {'a': 35}
+'''
+# 3a
+data = {'b': 20, 'a': 35}
+data['b'] = -data['b']
+# 3b
+data['c'] = 40
+# 3c
+if 'b' in data:
+    data['b'] = None
+# 3d
+data = {'b': 20, 'a': 35}
+for key in sorted(data.keys()):
+    print(key, end=' ')
+print()
