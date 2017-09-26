@@ -1,0 +1,236 @@
+\documentclass[11pt]{article}
+
+\usepackage{pstricks,pst-node}
+\usepackage[noend]{algpseudocode}
+
+\pagestyle{empty}
+\textwidth	165mm
+\textheight	248mm
+\topmargin	-13mm
+\oddsidemargin	-2mm
+\evensidemargin	-2mm
+
+
+\newcommand{\id}[1]{\mbox{\textit{#1}}}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+% For use in graphs in pspicture environment
+% \Gnode{x}{y}{name}{label}
+\newcommand{\Gnode}[4]{\Cnode(#1,#2){#3}\rput(#1,#2){#4}}
+\newcommand{\Hnode}[3]{\Cnode(#1,#2){#3}\rput(#1,#2){~}}
+
+\begin{document}
+
+\begin{center}
+{\sc The University of Melbourne
+\\
+School of Computing and Information Systems
+\\ 
+COMP90038 Algorithms and Complexity}
+\bigskip \\
+{\Large\bf Assignment 1, Semester 2, 2017}
+\bigskip \\
+{\large Released: 9 August.  Deadline: 31 August at 23:00}
+\end{center}
+
+\section*{Objectives}
+
+To improve your understanding of recurrence relations, 
+graph algorithms and search, as well as time complexity.
+To develop problem-solving and design skills.
+To develop skills in analysis and formal reasoning about
+complex concepts.
+To improve written communication skills; in particular the
+ability to present algorithms clearly, precisely and unambiguously.
+
+\section*{Four Challenges}
+
+\begin{enumerate}
+\item
+Consider the recurrence relation $T(n) = 2 T(n/2) + 1$, with $T(1) = 1$.
+\begin{enumerate}
+\item
+Use the Master Theorem to find a correct $\Theta$ expression for $T(n)$.
+\item
+Use telescoping to give an exact closed-form definition of $T(n)$.
+\item
+Suppose somebody presents you with the following argument, to show
+that $T(n) \not\in \Theta(n)$.
+\begin{quote}
+If we had $T(n) \in \Theta(n)$ then $T(n) \leq k \cdot n$ for some constant $k$.
+But, substituting into the recurrence relation, we get
+$2 \cdot k \cdot n/2 + 1 \leq k \cdot n$.
+And that in turn is clearly false for all $k$.
+Hence we must have $T(n) \not\in \Theta(n)$.
+\end{quote}
+Do you agree with this argument?
+Why or why not?
+\end{enumerate}
+
+\item
+DNA nucleobases are 
+\texttt{A} (adenine), 
+\texttt{C} (cytosine), 
+\texttt{G} (guanine) and 
+\texttt{T} (thymine).
+Consider the problem of counting, in a DNA string $s$,
+the number of sequences (substrings) 
+that start with an \verb!A! and end with a \verb!C!.
+For example, there are four such sequences in \verb!TACAAGCGA!.
+\begin{enumerate}
+\item
+Using pseudo-code, give a brute-force algorithm to solve this problem.
+\item
+Design a method that solves the problem with a single left-to-right
+scan of the string $s$ and present it using pseudo-code.
+Briefly explain why the complexity is linear in $|s|$.
+\end{enumerate}
+
+\item
+Given two nodes $v$ and $u$ in a connected, undirected graph 
+$G = \tuple{V,E}$,
+their \emph{distance} is the length of the shortest path between
+$v$ and $u$ (here each edge is of length 1).
+The \emph{remoteness} of a node is its distance to the node furthest away,
+that is, $\id{rem}(v) = \max \{\id{dist}(v,u) \mid u \in V\}$.
+A \emph{hub} in $G$ is a node which has minimal
+remoteness, compared to all other nodes.
+That is, $v$ is a hub iff
+$\id{rem}(v) = \min \{\id{rem}(u) \mid u \in V\}$.
+For example, $b$ is a hub in the graph on the left (below),
+whereas $b$, $d$ and $e$ all are hubs in the graph on the right.
+Note that a connected graph always has at least one hub.
+
+\begin{center}
+\begin{pspicture}(0,-0.2)(6,1.3)
+\psset{nodesep=1pt,linecolor=black,arrows=-}
+
+\Gnode{0}{1}{A}{$a$}
+\Gnode{1}{1}{B}{$b$}
+\Gnode{2}{1}{C}{$c$}
+\Gnode{0}{0}{D}{$d$}
+\Gnode{1}{0}{E}{$e$}
+\Gnode{2}{0}{F}{$f$}
+
+\Gnode{4}{1}{A1}{$a$}
+\Gnode{5}{1}{B1}{$b$}
+\Gnode{6}{1}{C1}{$c$}
+\Gnode{4}{0}{D1}{$d$}
+\Gnode{5}{0}{E1}{$e$}
+\Gnode{6}{0}{F1}{$f$}
+
+\ncline{A}{B}
+\ncline{A}{D}
+\ncline{B}{C}
+\ncline{B}{D}
+\ncline{B}{E}
+\ncline{B}{F}
+\ncline{D}{E}
+
+\ncline{A1}{B1}
+\ncline{A1}{D1}
+\ncline{B1}{C1}
+\ncline{B1}{D1}
+\ncline{B1}{E1}
+\ncline{D1}{E1}
+\ncline{E1}{F1}
+
+\end{pspicture}
+\end{center}
+\begin{enumerate}
+\item
+Using pseudo-code,
+design a function that, given a connected undirected graph $\tuple{V,E}$ 
+and a node $v \in V$, determines all distances from $v$, that is,
+for each $u \in V$, gives $\id{dist}(v,u)$.
+Assume that nodes are labelled 1 to $n$, so that your function 
+can return an array $\id{dist}$ with $\id{dist}[i]$ giving
+$i$'s distance to $v$.
+The algorithm should run in time that is linear in the size of the graph.
+\item
+Design an algorithm that, given a connected undirected graph $\tuple{V,E}$, 
+identifies a hub (any hub) in the graph.
+More precisely, use pseudo-code to define a function \textsc{Hub} 
+that takes $\tuple{V,E}$ as input and returns a node which is a hub.
+Aim for an $O(n^2)$ algorithm, where $n$ is the size of the graph.
+\end{enumerate}
+
+\item
+Let $\tuple{V,E}$ be a directed graph.
+A node $v \in V$ is an \emph{attractor} iff $v$ is a sink, and
+moreover, for every node $u \in V$ with $u \not= v$, $(u,v) \in E$.
+Note that a graph can have at most one attractor.
+We want an algorithm that will identify an attractor in an
+input graph $\tuple{V,E}$ if there is one.
+Assume that a graph is represented as an adjacency matrix $A$,
+with the nodes in $V$ labelled 1 to $n$.
+The function $\textsc{Attractor}(A[.,.],n)$ should return $i$ if
+node $i$ is an attractor, and 0 if the graph has no attractor.
+\begin{enumerate}
+\item
+Give an $O(n^2)$ algorithm for the problem, using pseudo-code.
+\item
+(Harder.)
+Give an $O(n)$ algorithm for the problem, using pseudo-code.
+Maximum marks will (only) be given for a solution that is both
+readable, intelligible, carefully explained and analysed,
+and, importantly, runs in linear time.
+\end{enumerate}
+
+\end{enumerate}
+
+\section*{Submission and evaluation}
+You will probably find some of the problems harder than others.
+All should be solved and submitted by students individually.
+The deadline is 31 August at 23:00.
+Late submission will be possible, but a late submission penalty will
+apply: a flagfall of 2 marks, and then 1 mark per 12 hours late.
+
+Submit a PDF document via the LMS.
+This document should be no more than 1 MB in size.
+For those who want to use the assignment to practise with \LaTeX,
+I will leave the \LaTeX\ source for this document in the
+content area where you find the PDF version.
+If you produce an MS Word document, it must be exported
+and submitted as PDF, and satisfy the space limit of 1 MB.
+We also accept \emph{neat} hand-written submissions, but these must be
+scanned and provided as PDF, and the scanner resolution must be set low
+enough to meet the 1 MB size limit.
+
+Your solution will count for 10 of the 30 marks allocated outside the
+written exam.
+Questions 1 and 4 are worth 2 marks each.
+Questions 2 and 3 are worth 3 marks each, evenly divided over the
+sub-problems.
+We expect your work to be neat---parts of your submission
+that are difficult to read or decipher will be deemed incorrect.
+Marks are primarily allocated for correctness, but elegance of
+algorithms and how clearly you communicate your thinking will
+also be taken into account.
+Where indicated, the complexity of algorithms also matters.
+
+Make sure that you have enough time as the deadline approaches,
+to present your solutions carefully.
+Careful presentation is often more time consuming than solving
+the problems.
+Explain your algorithms and write neat pseudo-code.
+Cormen \emph{et al.}\ (available as an e-book in the library)
+provide some guidelines for pseudo-code (pages 20--22).
+
+Time you put in early will usually turn out to be more productive that
+a last-minute, frantic effort.
+If you get stuck, email Yuan or Harald a precise description of the
+problem, bring it up at a lecture, or use the LMS discussion board.
+The COMP90038 LMS discussion forum is both useful and appropriate
+for this;
+soliciting help from sources other than the above
+will be considered cheating and will lead to disciplinary action.
+For more detail about the School's expectations to academic integrity,
+click the ``Academic Integrity'' menu item on the subject's LMS site.
+
+\begin{flushright}
+Harald S{\o}ndergaard 
+\\ 9 August 2017
+\end{flushright}
+
+\end{document}
