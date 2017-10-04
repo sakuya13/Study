@@ -200,3 +200,18 @@ data = {'b': 20, 'a': 35}
 for key in sorted(data.keys()):
     print(key, end=' ')
 print()
+
+'''
+chapter 5 review questions
+1: 20
+2: [20, 30]
+3: 1
+4: [10, 20, 30, 40, 50]
+5: [10, 5, 30]
+6: [10, 15, 30]
+7: dict_keys(['name', 'age']) # an iterable, but not a list or a tuple in python3
+# can be converted to list through: list(dict.keys())
+8: None
+9: pop
+10: strings and tuples
+'''
