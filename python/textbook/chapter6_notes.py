@@ -122,3 +122,80 @@ def main():
     print(mutual_friends(list1, list2))
 
 main()
+
+'''
+ADVANCED FUNCTIONS
+'''
+# return None as default value
+def maxlist(numlist):
+    if numlist:
+        maxnum = numlist[0]
+        for num in numlist[1:]:
+            if num > maxnum:
+                maxnum = num
+        return maxnum
+
+print(maxlist([]))
+
+def mymax(numlist):
+    if numlist:
+        return max(numlist)
+
+# return multiple values using tuple
+def minmax_list(intlist):
+    # CASE 1: intlist is empty
+    if not intlist:
+        return None, None  # tuple not list
+    # CASE 2: intlist has at least one element
+    else:
+        minval = maxval = intlist[0]
+        for i in intlist[1:]:
+            if i > maxval:
+                maxval = i
+            if i < minval:
+                minval = i
+    return minval, maxval  # tuple not list
+
+# little test
+def maxby(intlist):
+    if not intlist:
+        return None, None
+    lst_len = len(intlist)
+    if lst_len == 1:
+        return intlist[0], None
+    else:
+        intlist.sort()
+        return intlist[lst_len-1], intlist[lst_len-1] - intlist[lst_len-2]
+
+print(maxby([]))
+
+# lazy evaluation (multiple return points)
+def poslist2(numlist):
+    for num in numlist:
+        if num <= 0:
+            return False
+    return True
+    
+print(poslist2([0, -1, 3, 5]))
+
+# little practice
+def issorted(numlist):
+    if not numlist:
+        return True
+    for i in range(1, len(numlist)):
+        if numlist[i] < numlist[i-1]:
+            return False
+    return True
+
+# last evaluation exercise
+def basenum(num, base):
+    '''test if all digits in num is strictly smaller than base'''
+    if type(num) != int or type(base) != int:
+        return False
+    if num < 0 or base <= 0 or base > 10:
+        return False
+    num_string = str(num)
+    for num in num_string:
+        if int(num) >= base:
+            return False
+    return True

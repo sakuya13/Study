@@ -9,7 +9,7 @@ l2 = alist.append()
 l3 = alist.insert()
 l4 = alist.extend()
 
-# copying a list: don't ust assignment.
+# copying a list: don't use assignment.
 first = [1, 2, 3]
 second = first # alias side effect: change second will also change first.
 third = first[:] # eliminate the side effect.

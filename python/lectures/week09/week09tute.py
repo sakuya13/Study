@@ -19,6 +19,7 @@ def main():
 
 main()
 
+#TODO: important notes on default parameter in a function.
 '''
 listing 10.6 the default value lst is created only once, then it keeps
 changing as it appends.
