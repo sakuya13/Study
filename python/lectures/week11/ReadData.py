@@ -1,1 +1,0 @@
-def main():    #open the file     infile = open ('customers.txt', 'r')    #process the file     data = infile.read()    #close the file                   infile.close()                   #print the data    print('data',data)main()
