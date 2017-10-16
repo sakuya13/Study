@@ -48,8 +48,8 @@ def approximate_song(filename):
         tally_item = tally.items()
         sorted_key = sorted(tally_item, key=lambda words: words[0])
         sorted_item = sorted(sorted_key, key=lambda words: words[1],
-                             reverse = True)
-    return sorted_item[0][0]
+                             reverse=True)
+    return sorted_item[0]
 
 # write the file with append mode
 fp = open("quotes.txt", "a")
