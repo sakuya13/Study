@@ -10,6 +10,6 @@ if first > second:
     minimum = second
 else:
     maximum = second
-    minimum = first12
+    minimum = first
 print ('maximum:', maximum)
 print ('minimum:', minimum)
