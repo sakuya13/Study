@@ -3,13 +3,12 @@ lomuto partitioning
 '''
 def main():
     data = input('Enter a list of numbers (seperate with whitespaces): ')
+    k = int(input('Enter k: '))
     lst = [int(x) for x in data.split()]
     lo = 0
     hi = len(lst) - 1
-    m = (lo + hi) // 2
-    result = findmid(lst, lo, hi, m)
+    result = find_kth(lst, lo, hi, k)
     print(result)
-    # print(findmedian(lst, lo, hi, m))
 
 def findpivot(lst, lo, hi):
     # print(lo)
@@ -26,20 +25,16 @@ def findpivot(lst, lo, hi):
     lst[lo] = temp
     return s
 
-def findmid(lst, lo, hi, m):
+def find_kth(lst, lo, hi, k):
     s = findpivot(lst, lo, hi)
-    print(lst)
-    # print("s",s, "lo", lo)
-    # print("lst",lst, "lst[s]", lst[s])
-    if s - lo == m:
-        #print(lst[s])
+    if s - lo == k - 1:
         return lst[s]
     else:
-        if s - lo > m:
+        if s - lo > k - 1:
             # must return here to pass the result of the function to main().
-            return findmid(lst, lo, s - 1, m)
+            return find_kth(lst, lo, s - 1, k)
         else:
             # new list count from s+1, thus, cut off s-lo+1.
-            return findmid(lst, s + 1, hi, m - (s - lo + 1))
+            return find_kth(lst, s + 1, hi, (k - 1) - (s - lo))
 
 main()
