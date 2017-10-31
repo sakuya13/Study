@@ -1,0 +1,1 @@
+On behalf of the MUC (Made Up Company), I, Xiaowei Xu, have analysed 9610 units of the crime statistics data. This data covered 26 Subdivisions and found 21 types of crimes. I conclude that the worst area for crime is Inner Sydney, and that the most active category of crime is Theft.
