@@ -12,7 +12,7 @@ print('#######')
 print('%-10s' % ('test'))
 print('%10s' % ('this is a crazy example'))
 print('%10s' % ('this is'))
-print('%f' % (3.141592653589793))
+print('%f' % (3.141592653589793))  # by default, precision to 0.000000
 print('%.2f' % (3.141592653589793))
 print('%10.2f' % (3.141592653589793))
 print('%10d' % (2345)) # by default right justified
@@ -24,7 +24,7 @@ print('#######')
 print('{:10}'.format('test')) # left aligned
 print('{:10s}'.format('this is a crazy example'))
 print('{:10s}'.format('this is'))
-print('{:f}'.format(3.141592653589793))
+print('{:f}'.format(3.141592653589793))  # by default, precision to 0.000000
 print('{:.2f}'.format(3.141592653589793))
 print('{:10.2f}'.format(3.141592653589793))
 print('{:10d}'.format(2345))
@@ -39,7 +39,7 @@ print('{:>10s}'.format('this is'))
 print('{:<10s}'.format('this is'))
 print('{:^10s}'.format('this is'))
 
-#padding in the new style - not that easy in the old style
+# padding in the new style - not that easy in the old style
 print('-------')
 print('{:#<10s}'.format('test'))
 print('{:#>10s}'.format('test'))
