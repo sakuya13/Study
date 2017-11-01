@@ -11,20 +11,6 @@ print(sorted(d, key=lambda k:d[k]))
 # if you want to return the key and the value
 print(sorted(d.items(), key=lambda k: k[1]))
 
-# this type of for loop can be replaced by list comprehension
-tally = {'2000': 21, '2001':21, '2002':20, '2003':19}
-# max_list = []
-# tally_max = max(tally, key=lambda k: tally[k])
-# for item in tally:
-#     if tally[item] == tally[tally_max]:
-#         max_list.append(item)
-# print(', '.join(max_list))
-
-# better use list comprehension:
-tally_max = max(tally, key=lambda k: tally[k])
-m_lst = [item for item in tally if tally[item] == tally[tally_max]]
-print(', '.join(m_lst))
-
 '''
 week02
 1. variable naming: must not start with a number, but can contain numbers in the
@@ -239,4 +225,193 @@ print('{d[4]} {d[5]}'.format(d=data))
 from datetime import datetime
 print('{:%Y-%m-%d %H:%M}'.format(datetime(2016, 2, 10, 4, 30)))
 
+'''week7&8'''
+list1 = [1,2,3]
+list2 = [4,5,6]
+list1 + list2  # list2 append to the end of list1
+
+# list comparision: returns true if comparision of each elements of the
+# corresponding position is true
+list2 > list1
+
+# mutable: replacing an element in a list
+l1[2] = 7  #  l1 will be [1,2,7]
+
+sentence = 'This example has five words.'
+words = sentence.split()
+index = 0
+while index < len(words):
+    words[index] = words[index].upper()
+    index += 1
+print(words)
+
+# substitute a slice of the list
+num = [1, 2, 3, 4, 5]
+num[0:3] = [11, 12, 13]
+
+'''list.methods()'''
+'''lst.index(item)  #  similar to string method find'''
+# search an item using index
+lst = [1,2,3,4,5]
+target = 3
+if target in lst:
+    print(lst.index(target))
+else:
+    print(-1)
+
+'''lst.append(item)  #  it does not return a list'''
+
+name_lst = []
+again = 'y'
+while again =='y':
+    name = input('enter name: ')
+    name_lst.append(name)
+    print('do you want to add more name?')
+    again = input('y = yes, anything else = no: ')
+print('name list: ', name_lst)
+
+'''lst.sort()  rearrange items in ascending order'''
+example = [10,5,23,6]
+example.sort()  # can be used to sort the list and find the median
+
+'''lst.insert(<index>,<item>) it won't delete or replace the items in the lst'''
+lst = [2,54,4,3,5]
+lst.insert(2, 'fat')
+print(lst)
+
+'''list.reverse()'''
+example = [10,5,23,6]
+example.sort()
+example.reverse()
+print(example)
+
+'''lst.remove(item)  note that you need to know the item'''
+example = [10,5,23,6]
+example.remove(5)  # if item not in the list, will trigger a ValueError
+print(example)
+
+'''del <list[index]>  don't have to know the item'''
+example = [10,5,23,6]
+del example[2]
+print(example)
+
+'''max(<list>) and min(<list>)'''
+example = [10,5,23,6]
+print(max(example))
+
+'''list comprehension'''
+s = [x ** 2 for x in range(10)]
+print(s)
+v = [2 ** i for i in range(13)]
+print(v)
+lst = list(range(10))
+m = [x for x in lst if x % 2 == 0]
+print(m)
+
+# one way to find prime numbers
+noprimes = [j for i in range(2, 8) for j in range(i*2, 50, i)]
+primes = [x for x in range(2, 50) if x not in noprimes]
+print(primes)
+# alternative way without using list comprehension
+noprimes = []
+for i in range(2, 8):
+    for j in range(i*2, 50, i):
+        noprimes.append(j)
+print(noprimes)
+primes = []
+for x in range(2, 50):
+    if x not in noprimes:
+        primes.append(x)
+print(primes)
+
+# another example
+words = 'The quick brown fox jumps over the lazy dog'.split()
+stuff = [[w.upper(), w.lower(), len(w)] for w in words]
+print(stuff)
+
+# this type of for loop can be replaced by list comprehension
+tally = {'2000': 21, '2001':21, '2002':20, '2003':19}
+max_list = []
+tally_max = max(tally, key=lambda k: tally[k])
+for item in tally:
+    if tally[item] == tally[tally_max]:
+        max_list.append(item)
+print(', '.join(max_list))
+
+# better use list comprehension:
+tally_max = max(tally, key=lambda k: tally[k])
+m_lst = [item for item in tally if tally[item] == tally[tally_max]]
+print(', '.join(m_lst))
+
+'''TODO: aliasing and side effects'''
+first = [1,2,3]
+second = first
+second = [4,5,6]
+print(first)
+#  prevent from aliasing, side effects. two ways:
+third = first[:]
+third = [7,8,9]
+print(first)
+print(third)
+#  alternative way:
+third = []
+for element in first:
+    third.append(element)
+print(first)
+third[1] = 5
+print(third)
+
+# object identity and structural equivalence
+lst1 = [1,2,3]
+lst2 = [1,2,3]
+lst1 == lst2  #  true
+lst1 is lst2  #  false
+#  however, if we do this:
+lst1 = lst2
+lst1 == lst2  #  true
+lst1 is lst2  #  true
+
+'''TODO: tuples immutable, operations: concatenation, iteration, in, slicing,
+indexing are allowed, cannot update, cannot remove individual tuple
+elements(but able to delete the entire tuple)'''
+
+example = ['fat', 'cat']
+print(tuple(example))  # covert the list into a tuple
+print(example)
+
+# creating tuples: must contain a comma
+tup = (50)
+tup2 = (50,)
+
+# accessing is the same as list
+tup1 = (1,2,3)
+print(tup[1])
+
+# deleting the entire tuple is allowed
+tup1 = (1,2,3)
+del tup1
+print(tup1)  # will trigger a NameError
+
+# min, max, len are allowed
+max(tup1)
+min(tup1)
+len(tup1)
+
+'''dictionary: dictionary TODO:keys(must be immutable data type since python3)
+can be data of any immutable types(string, tuple). any data type which has
+__hash__ (hashable) and __eq__ (comparable) methods can be key
+(set has same requirement). associated values can be of any type'''
+
+'''all python built-in immutable data type are hashable, mutable types are not.
+frozen set are also immutable and hashable, can be used as a dictionary key.
+all of the above can be used as the default arguement of a function'''
+
+'''<dictionary>[key] = <value>  add or replace value in a dictionary'''
+info = {}
+info['name'] = 'Sandy'
+info['occupation'] = 'hacker'
+print(info)
+#  replace value
+info['name'] = 'cat'
+print(info)
 
