@@ -17,12 +17,8 @@ def findpivot(lst, lo, hi):
     for i in range(lo + 1, hi + 1):
         if lst[i] < pivot:
             s += 1
-            temp = lst[i]
-            lst[i] = lst[s]
-            lst[s] = temp
-    temp = lst[s]
-    lst[s] = lst[lo]
-    lst[lo] = temp
+            swap(lst, i, s)
+    swap(lst, s, lo)
     return s
 
 def find_kth(lst, lo, hi, k):
@@ -36,5 +32,10 @@ def find_kth(lst, lo, hi, k):
         else:
             # new list count from s+1, thus, cut off s-lo+1.
             return find_kth(lst, s + 1, hi, (k - 1) - (s - lo))
+
+def swap(lst, i, j):
+    temp = lst[j]
+    lst[j] = lst[i]
+    lst[i] = temp
 
 main()
