@@ -4,7 +4,7 @@ def fib(n):
         return 1
     if n == 1:
         return 1
-    return (fib(n - 1) + fib(n - 2))
+    return fib(n - 1) + fib(n - 2)
 
 def fib_linear(n, a=1, b=0):
     '''only need to remember the two latest numbers in the sequence'''
