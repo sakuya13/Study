@@ -115,6 +115,8 @@ print(song.replace('let', 'so', 2))
 s.split([sep])  # sep is the dilimiter, by default use whitespace as dilimiter,
 # returns a list.
 s.strip([aString])  # by default remove the leading and trailing whitespace
+s.rstrip()  # remove trailing
+s.lstrip()  # remove leading
 
 '''
 week05
@@ -414,4 +416,51 @@ print(info)
 #  replace value
 info['name'] = 'cat'
 print(info)
+
+'''week09 functions'''
+
+n = 4.56e-1
+def print_digits(n):
+    s = str(abs(n))
+    print(len(s) - ('.' in s))  # boolean automated converted to 1 or 0
+print_digits(n)
+
+True - 1  # whats the result?
+False - 1
+
+'''week10 file I/O'''
+file = open('test.txt', 'r')
+file.read()  # read whole file
+file.readline()  # read only one line a time
+line = line.rstrip('\n')  # readline will keep a \n at the end of each line
+file = open('test.txt', 'w')
+file = open('test.txt', 'a')
+file.write('fat and cat')
+file.close()
+
+# alternatively: automatically close when the block finishes
+with open('test.txt', 'w') as filename:
+    filename.write('fat and cat')
+    for line in filename:  # use for loop to iterate the file
+        lines = line
+        print(lines)
+
+# read numbers
+# suppose each line in the file contains only one integer
+with open('integers.txt', 'r') as txtfile:
+    sums = 0
+    for line in txtfile:
+        line = line.strip()
+        number = int(line)
+        sums += number
+    print('The sum is:',sums)
+# suppose each line contain multiple integers
+with open('integers.txt', 'r') as txtfile:
+    sums = 0
+    for line in txtfile:
+        integer_list = line.split()
+        for integer in integer_list:
+            number = int(integer)
+            sums += number
+    print('The sum is:',sums)
 
