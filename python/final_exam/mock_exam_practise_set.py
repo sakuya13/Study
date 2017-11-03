@@ -1,13 +1,17 @@
 '''mock exam 1'''
 
 # Q1
-# pick up the keys and return a sorted list of the keys
+# TODO:pick up the keys and return a sorted list of the keys
 sorted({'dogs': ['Anne'], 'ducks': ['Mathew']})[-1]
+# the 0 and 1s before the : is the index of arguments in the format()
+# here 0 points to 3.141592653 and 1 points to 22/7
 "pi = {0:_>10.5f} != {1:.5f}".format(3.141592653, 22/7)
 "pi = {0:10.5f} != {1:.5f} {0}".format(3.141592653, 22/7)
+# try to return the value of the key, if no such key found, return tue default
+# arguement, which is 'not found' here
 {'name':'kev','Age':25,'ID':2314,'pay': 24.99}.pop('gender', 'not found')
 
-# Q6
+# Q6TODO:
 '''syntax and runtime error is the exact points in the code that trigger
 error, logic error often locates at the points where it doesn't trigger any
 error, but it eventually leads to the wrong output of the code'''
@@ -87,3 +91,32 @@ def multipal_ver2(word, n=None):
     return False
 
 debug()
+
+'''practice set01'''
+# 2(a)
+a = 1
+b = 2
+c = 3.0
+d = 0
+a + b / c  # 1.6666666666666665  # by default, 16 positions after the floating point
+bool(d and not b or a)
+bool((d and not b) or a)
+bool(d and not (b or a))
+
+# 3(d)
+s = 'internationalization'
+s[25]  # IndexError
+s[:25]  # full string
+
+# 4
+print("{} was a racehorse, {} was one too".format(11, 22))
+print("One day {1} won a race, and {0} won one too".format(11, 22))
+print("One day {h1} won a race, and {h2} won one too".format(h1=11, h2=22))
+print("pi = {0:10.5f} != {1:.5f}".format(3.141592653, 22/7))
+
+# the 0 and 1s before the : is the index of arguments in the format()
+# here 0 points to 3.141592653 and 1 points to 22/7
+print("pi = {0:_>10.5f} != {1:.5f}".format(3.141592653, 22/7))
+print("pi = {0:10.5f} != {1:.5f} {0}".format(3.141592653, 22/7))
+print("pi = {0:10.5f} != {1:.5f} {1}".format(3.141592653, 22/7))
+
