@@ -275,6 +275,12 @@ print('name list: ', name_lst)
 '''lst.sort()  rearrange items in ascending order'''
 example = [10,5,23,6]
 example.sort()  # can be used to sort the list and find the median
+print(example)
+# using sorted() method, which will return the sorted list, but won't change
+# the original list
+example = [10,5,23,6]
+print(sorted(example))
+print(example)
 
 '''lst.insert(<index>,<item>) it won't delete or replace the items in the lst'''
 lst = [2,54,4,3,5]
@@ -286,6 +292,12 @@ example = [10,5,23,6]
 example.sort()
 example.reverse()
 print(example)
+# example to use the reverse function
+listofvalues = [10,5,23,6]
+for i in reversed(listofvalues):
+       #print (i)
+       print('{:#^10d}'.format(i))
+print("####")
 
 '''lst.remove(item)  note that you need to know the item'''
 example = [10,5,23,6]
@@ -417,9 +429,107 @@ print(info)
 info['name'] = 'cat'
 print(info)
 
+# dictionary methods
+employee_record = {'name': 'kevin',
+                   'Age': 43,
+                   'ID':23145,
+                   'payrate':24.99
+                  }
+employee_record2 = {'name': [1, 2, 3, 4],
+                   'Age': [43, 23, 34, 45],
+                   'ID': 23145,
+                   'payrate': 24.99
+                  }
+# one way of getting all items:
+for key, value in employee_record.items():
+    print(key, value)
+# another way:
+for key in employee_record:
+    print(key, employee_record[key])
+# getting all keys
+print(list(employee_record.keys()))
+for key in employee_record.keys():
+    print(key)
+# get all value
+print(list(employee_record.values()))
+for value in employee_record.values():
+    print(value)
+# employee_record.values() 
+# returns 'dict_values([[1, 2, 3, 4], [43, 23, 34, 45], 23145, 24.99])'
+# deleting an item
+del employee_record2['Age']
+# TODO: pop(), second arguement is the default value, if no such key, then return this
+# value. if not this value is not assigned, trigger KeyError.
+print(employee_record2.pop('Age', 'not found'))
+
+# test if a key is in a dictionary
+a = 'name'
+if a in employee_record:
+    print('a is in the dictionary')
+else:
+    print('not found')
+
+'''TODO: default dictionary'''
+from collections import defaultdict
+def hapax(text):
+    t_list = text.split()
+    d = defaultdict(int)  # the parameter here is the type for value
+    for word in t_list:
+        d[word] += 1
+    sorted_d = sorted(d)
+    freq_1_word = [key for key in sorted_d if d[key] == 1]
+    return freq_1_word
+
+print(hapax('a b c a'))
+print(hapax('c ba a a'))
+
+# an example with the list as the value type
+from collections import defaultdict
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+print(d)
+
+# Note also that the type we provide is only the default value for a new key,
+# and we are not constrained to use only that type for all {key: value} pairs:
+# also can use import as if the method name is very long
+from collections import defaultdict as dd
+d = dd(int, {'a': 2})
+d['b'] = 'hah!'
+print(d)
+
+'''set
+TODO: SET union the two set: "|", find the intersection:"&".
+SET has random order'''
+my_set={"a", "b", "c", 1}
+print("a" in my_set)
+print(True in my_set)
+
+my_sequence = "hello"
+my_set = set(my_sequence)
+print(my_set)
+
+my_set1 = {2, 3, 4}
+my_set2 = {2, 5}
+print("my_set1-my_set2", my_set1 - my_set2)
+print("my_set2-my_set1", my_set2 - my_set1)
+print("Union: my_set2|my_set1", my_set2 | my_set1)
+print("Intersection: my_set2 & my_set1", my_set2 & my_set1)
+
+my_set = {"a", 1, ("bob", 45)}
+my_set.add(("Joe", 50))
+print(my_set)  # set has no order(every time generates different order)
+my_set.remove(("bob", 45))
+print(my_set)
+
+my_set = {"a", 1, ("bob", 45)}
+print(len(my_set))
+
+
 '''week09 functions'''
 
-n = 4.56e-1
+n = -4.55
 def print_digits(n):
     s = str(abs(n))
     print(len(s) - ('.' in s))  # boolean automated converted to 1 or 0
@@ -427,6 +537,14 @@ print_digits(n)
 
 True - 1  # whats the result?
 False - 1
+
+def digit(n):
+    s = str(abs(n))
+    return len(s) - ('.' in s)
+print(digit(-4.55e5))  #  this is a float
+print(digit(-455000.0))  # scientific notation, will keep the float type
+print(digit(-4.55))
+
 
 '''week10 file I/O'''
 file = open('test.txt', 'r')

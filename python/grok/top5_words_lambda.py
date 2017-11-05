@@ -7,7 +7,7 @@ def top5_words(text):
         else:
             tally[word] = 1
     tally_item = tally.items()
-    s = sorted(tally_item, key=lambda words: words[0])
+    s = sorted(tally_item)
     sorted_list = sorted(s, key=lambda words: words[1], reverse=True)
     top5_list = []
     sorted_list_length = len(sorted_list)
