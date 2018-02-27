@@ -3,12 +3,11 @@
 - **DUES**
 
 - **TODO**
-    - [ ] Java
     - [ ] Trip to Japan
     - [ ] 
+    - [ ] Java
     - [ ] **IELTS vocabulary**
     - [ ] **Japanese learing**
-    - [ ] SD
 
 - **important dates**
     - [ ]
