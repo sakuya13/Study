@@ -56,3 +56,15 @@ t ++ "abc"
 1.1 % 2.2 -- error
 1.1 % 20 -- error
 
+-- Exercises
+sqrt 16 -- floating
+succ 6
+pred 9
+sin (pi / 2)
+truncate pi
+round 3.5
+round 3.4
+truncate 3.5
+floor 3.7
+ceiling 3.3
+-- what is ":show bindings"?
