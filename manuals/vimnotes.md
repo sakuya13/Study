@@ -1,0 +1,27 @@
+- undo
+    - u
+- comment
+    - comment multiple lines
+    :1,10s/^/#
+    - undo the comment
+:1,10s/^#
+- moving around
+    - w: beginning of a word
+    - e: end of a word
+    - b: Move backward to the beginning of a word
+    - j: backward one line
+    - k: forward one line
+    - ^: go to head of line
+    - $: go to end of line
+    - { }: jump over one paragraph
+    - 
+- delete
+    - dw:delete current word
+    - x delete current character
+- editing
+    - copy: y
+    - cut: d
+    - paste: p
+- commands
+    - :hi + highlight commands in .vimrc file: preview the settings
+    - :bd close current buffer
