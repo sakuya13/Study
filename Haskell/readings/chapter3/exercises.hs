@@ -50,6 +50,7 @@ isPalin xs
 -- 6. Create a function that sorts a list of lists based on the length of 
 -- each sublist. (You may want to look at the sortBy function from 
 -- the Data.List module.)
+
 sortList :: (Ord t) => [[t]] -> [[t]]
 sortList xs = sortBy (compare `on` length) xs
 
@@ -74,4 +75,37 @@ foo a (x:xs) =
 
 -- foo' a ((x:xs):xss)
 -- foo' a ([]:xss) 
---
+
+-- 9. Using the binary tree type that we defined earlier in this chapter,
+-- write a function that will determine the height of the tree. The height is 
+-- the largest number of hops from the root to an Empty. For example,
+-- the tree Empty has height zero; Node "x" Empty Empty has height one;
+-- Node "x" Empty (Node "y" Empty Empty) has height two; and so on.
+
+data Tree t = Node t (Tree t) (Tree t)
+            | Empty
+
+treeHeight :: Tree t -> Int
+treeHeight Empty = 0
+treeHeight (Node x l r)
+    | lHeight > rHeight = lHeight + 1
+    | otherwise         = rHeight + 1
+    where lHeight = treeHeight l
+          rHeight = treeHeight r
+
+-- 10. Consider three two-dimensional points, a, b, and c. If we look at 
+-- the angle formed by the line segment from a to b and the line segment 
+-- from b to c, it turns left, turns right, or forms a straight line. 
+-- Define a Direction data type that lets you represent these possibilities.
+
+
+
+
+
+
+
+
+
+
+
+
