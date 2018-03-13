@@ -3,13 +3,16 @@
 data Tree = Node String Int Tree Tree
           | Leaf
 
+-- polymophic tree
+data Tree' k v = Leaf | Node k v (Tree' k v) (Tree' k v)
+
 -- relevant functions
 count_node :: Tree -> Int
 count_node Leaf = 0
 count_node (Node _ _ l r) =
     1 + (count_node l) + (count_node r)
 
-search_bst :: String -> Tree -> Maybe Int
+search_bst :: (Ord k) => Tree' k v -> k -> Maybe v
 search_bst _ Leaf = Nothing
 search_bst kv (Node k v l r)
     | kv == k   = Just v

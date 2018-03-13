@@ -1,0 +1,7 @@
+- Directories
+    - **mkdir dirname**: new directory
+    - **cd dirname**: change directory
+    - **pwd**: show current directory
+    - **a="$PWD"**: save current directory to variable a
+        - **echo $a**: show value of a
+        - **cd $a**: to directory a

@@ -98,8 +98,10 @@ treeHeight (Node x l r)
 -- from b to c, it turns left, turns right, or forms a straight line. 
 -- Define a Direction data type that lets you represent these possibilities.
 
-
-
+data Direction = Left | Right | Straight
+                 deriving Show
+-- 11. Write a function that calculates the turn made by three 
+-- two-dimensional points and returns a Direction.
 
 
 

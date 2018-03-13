@@ -12,7 +12,10 @@
     - **^**: go to head of line
     - **$**: go to end of line
     - **{ }**: jump over one paragraph
-    - 
+- v mode
+    - **^ v**: select block
+    - **shift v**: select current line
+    -
 - delete
     - **dw**: delete current word
     - **x**: delete current character
@@ -26,4 +29,13 @@
     - **:noh** hide searching keywords highlighting
     - **/regex pattern/flags**: search
     - **s/regex pattern/new word/flags**: substitute
-    -
+        - **:%s/foo/bar/gc**:Find each occurrence of 'foo' (in all lines), and
+        replace it with 'bar', ask for confirmation.
+        - **:s/foo/bar/gc**: Find each occurrence of 'foo' (in the current
+        line only), and replace it with 'bar', ask for confrimation.
+        - **(y/n/a/q/l/\^E/^Y)i**: You can type y which means to substitute this
+        match, n to skip this match, a to substitute this and all remaining
+        matches ("all" remaining matches), q to quit the command, l to
+        substitute this match and quit (think of "last"), ^E to scroll the
+        screen up by holding the Ctrl key and pressing E and ^Y to scroll the
+        screen down by holding the Ctrl key and pressing Y.
