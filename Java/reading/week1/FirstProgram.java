@@ -1,3 +1,7 @@
+import java.text.*;
+import java.util.Locale;
+
+
 public class FirstProgram {
     public static void main(String[] args) {
         System.out.println("Hello Reader.");
@@ -20,6 +24,15 @@ public class FirstProgram {
                 price, name);
         System.out.println("WOW!");
 
+        System.out.println("China as Location:");
+        NumberFormat moneyFormater
+            = NumberFormat.getCurrencyInstance(Locale.CHINA);
+
+        System.out.println(moneyFormater.format(19.8));
+        System.out.println(moneyFormater.format(19.91111111));
+
+        System.out.println(moneyFormater.format(19));
+         
         }
 }
 

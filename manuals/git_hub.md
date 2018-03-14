@@ -34,7 +34,8 @@
 - ```$ git add [file]```
 
     Snapshots the file in preparation for versioning
-
+    - ```$ git add -A```: add all untracked files at all entry
+    - 
 - ```$ git diff --staged```
 
     Shows file differences between staging and the last file version

@@ -33,9 +33,12 @@
         replace it with 'bar', ask for confirmation.
         - **:s/foo/bar/gc**: Find each occurrence of 'foo' (in the current
         line only), and replace it with 'bar', ask for confrimation.
-        - **(y/n/a/q/l/\^E/^Y)i**: You can type y which means to substitute this
-        match, n to skip this match, a to substitute this and all remaining
-        matches ("all" remaining matches), q to quit the command, l to
-        substitute this match and quit (think of "last"), ^E to scroll the
-        screen up by holding the Ctrl key and pressing E and ^Y to scroll the
-        screen down by holding the Ctrl key and pressing Y.
+        - **(y/n/a/q/l/\^E/^Y)i**:
+            - **y** which means to substitute this match
+            - **n** to skip this match
+            - **a** to substitute this and all remaining
+        matches ("all" remaining matches)
+            - **q** to quit the command,
+            - **l** to substitute this match and quit (think of "last")
+            - **^E** to scroll the screen up by holding the Ctrl key and pressing E
+            - **^Y** to scroll the screen down by holding the Ctrl key and pressing Y
