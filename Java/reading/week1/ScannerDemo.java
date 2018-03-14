@@ -22,13 +22,13 @@ public class ScannerDemo{
         System.out.println("You entered" + d1 + "and" + d2);
 
         System.out.println("Next enter two words:");
-        String word1 = keyboard.next();
-        String word2 = keyboard.next();
+        String word1 = keyboard1.next();  // the effect of use delimeter
+        String word2 = keyboard1.next();
         System.out.println("You entered \"" + word1 + "\" and \"" + word2 + "\"");
         
         String junk1 = keyboard.nextLine();
         System.out.println("Enter a sentence:");
-        String line = keyboard1.nextLine(); // why new delimiter isn't working?
+        String line = keyboard.nextLine(); // useDelimiter doesn't reflect on nextLine()?
         System.out.println("You entered: \"" + line + "\"");
         
         System.out.println("enter a int:");
