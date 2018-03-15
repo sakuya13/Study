@@ -21,11 +21,26 @@ public class IfElse {
         System.out.println("b is: " + b);
         
         if (a >= b) max1 = "a";
-        else       max1 = "b";
+        else        max1 = "b";
         System.out.println("max1 is: " + max1);
         
         max2 = (a >= b) ? "a" : "b";
         System.out.println("max2 is: " + max2);
+
+        int c = keyboard.nextInt();
+        switch (c) {
+            case 0:
+                //
+                break;
+            case 1:
+                //
+            case 2:
+                // 
+                break;
+            default:
+                // 
+                break;
+        }
 
         keyboard.close();    
     }
