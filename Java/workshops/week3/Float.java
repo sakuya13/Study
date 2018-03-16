@@ -13,6 +13,6 @@ public class Float {
         double product = d1 * d2;
         System.out.println("Product is: " + product);
         
-
+        keyboard.close();
     }
 }
