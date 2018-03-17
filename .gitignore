@@ -5,3 +5,7 @@
 *.fls
 *.synctex.gz
 *.swp
+*.hi
+*.o
+*.class
+*.pdf
