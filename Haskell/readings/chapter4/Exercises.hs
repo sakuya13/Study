@@ -31,13 +31,19 @@ safeInit' (x:xs) =
     Just $ x : (fromMaybe [] (safeInit' xs))
 
 
-myFromMaybe :: a -> Maybe a -> a
-myFromMaybe x m =
-    case m of
-        Nothing -> x
-        Just y -> y
+-- myFromMaybe :: a -> Maybe a -> a
+-- myFromMaybe x m =
+--     case m of
+--         Nothing -> x
+--         Just y -> y
 
 -- Q2
-splitWith p xs =
-    if p then 
-    else
+splitWith :: (a -> Bool) -> [a] -> [[a]]
+splitWith _ [] = []
+splitWith p (x:xs) =
+    let (first, rest) = span p (x:xs)
+    in
+    if p x then first : splitWith p rest
+    else splitWith p xs
+
+
