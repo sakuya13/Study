@@ -15,9 +15,9 @@ mySum = helper 0
           helper acc [] = acc
 
 -- foldl definition
-foldl' :: (a -> b -> a) -> a -> [b] -> a
-foldl' step zero (x:xs) = foldl' step (step zero x) xs
-foldl' _ zero [] = zero
+foldL :: (a -> b -> a) -> a -> [b] -> a
+foldL step zero (x:xs) = foldL step (step zero x) xs
+foldL _ zero [] = zero
 
 --foldlSum :: [Integer] -> Integer
 foldlSum xs = foldl (+) 0 xs
