@@ -1,3 +1,5 @@
+module Fold where
+
 import Data.Char (digitToInt)
 
 s = sum [1..100000]
@@ -54,5 +56,17 @@ identity xs = foldr (:) [] xs
 
 append :: [a] -> [a] -> [a]
 append xs ys = foldr (:) ys xs
+
+-- const :: a -> b -> a
+-- const a b = a
+
+length' :: [a] -> Integer
+length' = foldr ((+) . const 1) 0 
+
+map' :: (a -> b) -> [a] -> [b]
+map' f = foldr ((:) . f) []
+
+reverse' :: [a] -> [a]
+reverse' = foldl (flip (:)) []
 
 
