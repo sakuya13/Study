@@ -12,6 +12,8 @@
     - **^**: go to head of line
     - **$**: go to end of line
     - **{ }**: jump over one paragraph
+    - **G**: jump to end of file
+    - **gg**: jump to start of file
 - v mode
     - **^ v**: select block
     - **shift v**: select current line
