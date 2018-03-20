@@ -44,3 +44,5 @@
             - **l** to substitute this match and quit (think of "last")
             - **^E** to scroll the screen up by holding the Ctrl key and pressing E
             - **^Y** to scroll the screen down by holding the Ctrl key and pressing Y
+    - ```!cmd [args]``` commandline
+    - ```^r %``` copy filename to cursor

@@ -61,5 +61,28 @@ eval a b expr =
         Div expr1 expr2 -> eval a b expr1 `div` eval a b expr2
     where eval' = eval a b  -- currying
 
+data BoolExpr
+    = BoolConst Bool
+    | BoolOp BoolOp BoolExpr BoolExpr 
+    | CompOp CompOp IntExpr IntExpr
 
+data IntExpr
+    = IntConst Int
+    | IntOp IntOp IntExpr IntExpr
+    | IntIfThenElse BoolExpr IntExpr IntExpr
+
+data BoopOp = And
+data CompOp = LessThan
+data IntOp = Plus | Times
+
+intExprValue :: IntExpr -> Int
+intExprValue (IntConst i) = i
+intExprValue (IntOp Plus a b)
+    = intExprValue a + intExprValue b
+intExprValue (IntOp Times a b)
+    = intExprValue a * intExprValue b
+intExprValue (IntIfThenElse t a b)
+    = if t then intExprValue a else intExprValue b
+intExprValue (CompOp LessThan a b)
+    = intExprValue a < intExprValue b
 
