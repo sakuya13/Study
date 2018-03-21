@@ -3,7 +3,7 @@
 - comment
     - comment multiple lines:1,10s/^/#
     - undo the comment: 1,10s/^#
-- moving around
+- moving around (Insert mode)
     - **w**: beginning of a word
     - **e**: end of a word
     - **b**: Move backward to the beginning of a word
@@ -14,6 +14,7 @@
     - **{ }**: jump over one paragraph
     - **G**: jump to end of file
     - **gg**: jump to start of file
+    - **p**: to new line
 - v mode
     - **^ v**: select block
     - **shift v**: select current line

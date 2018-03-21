@@ -8,9 +8,9 @@
 ###Files
 - ```cp [file] [new_directory/file]```: copy
 - ```rm [file]```: remove
+    -```rm -rf```: remove directory
 - ```ls```: list your files
     - ```ls -l```: list in long format
     - ```ls -a```: lists all files
 - ```mv [file1] [file2]```: in same directory equals to rename
     - ```mv [file1] [new_directory/file2]``` move file to new directory
--
