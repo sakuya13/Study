@@ -3,21 +3,11 @@
 data Tree = Node String Int Tree Tree
           | Leaf
 
--- polymophic tree
-data Tree' k v = Leaf | Node k v (Tree' k v) (Tree' k v)
-
 -- relevant functions
 count_node :: Tree -> Int
 count_node Leaf = 0
 count_node (Node _ _ l r) =
     1 + (count_node l) + (count_node r)
-
-search_bst :: (Ord k) => Tree' k v -> k -> Maybe v
-search_bst _ Leaf = Nothing
-search_bst kv (Node k v l r)
-    | kv == k   = Just v
-    | kv <  k   = search_bst kv l
-    | otherwise = search_bst kv r
 
 insert_bst :: Tree -> String -> Int -> Tree
 insert_bst Leaf ik iv = Node ik iv Leaf Leaf
@@ -31,5 +21,16 @@ assoc_list_to_bst [] = Leaf
 assoc_list_to_bst ((hk, hv):kvs) =
     let t0 = assoc_list_to_bst kvs
     in insert_bst t0 hk hv
+
+
+-- polymophic tree
+data Tree' k v = Leaf | Node k v (Tree' k v) (Tree' k v)
+
+search_bst :: (Ord k) => Tree' k v -> k -> Maybe v
+search_bst _ Leaf = Nothing
+search_bst kv (Node k v l r)
+    | kv == k   = Just v
+    | kv <  k   = search_bst kv l
+    | otherwise = search_bst kv r
 
 
