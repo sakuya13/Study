@@ -41,7 +41,8 @@ transpose list@(xs:xss)
     | len > 0   = transpose' len list
     | otherwise = error "transpose of zero_width matrix"
     where len = length xs
-
+-- replicate n x returns a list with length n in which every element is of x 
+-- value
 transpose' len [] = replicate len []
 transpose' len (xs:xss)
     | len == length xs = zipWith (:) xs (transpose' len xss)
