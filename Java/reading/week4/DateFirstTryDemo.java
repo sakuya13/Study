@@ -33,11 +33,31 @@ public class DateFirstTryDemo {
             day -= 1;
         }
     }
+    
+    public void setDate(int newMonth, int newDay, int newYear) {
+        month = monthString(newMonth);
+        day = newDay;
+        year = newYear;
+    }
+
+    public String monthString(int monthNumber) {
+        switch (monthNumber) {
+            case 1:
+                return "January";
+            case 2:
+                return "February";
+            case 3:
+                return "March";
+            default:
+                System.out.println("Fatal error!");
+                System.exit(0);
+                return "Error";
+        }
+    }
 
     public static void main(String[] args) {
-        DateFirstTryDemo date1, date2;
+        DateFirstTryDemo date1;
         date1 = new DateFirstTryDemo(); // create a new object of the class
-        date2 = new DateFirstTryDemo();
         date1.month = "December";  // create a instance variable
         date1.year = 2012;
         date1.day = 31;
@@ -52,6 +72,10 @@ public class DateFirstTryDemo {
         date1.yellIfNewYear();
         System.out.println("Next year is: " + date1.getNextYear());
         
+        DateFirstTryDemo date = new DateFirstTryDemo();
+        int year = 1882;
+        date.setDate(3, 7, year);
+        date.writeOutput();
     }
     
 }

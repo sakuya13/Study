@@ -13,3 +13,4 @@ public class ReturnDemo {
         System.out.println(fat.myMethod());
     }
 }
+
