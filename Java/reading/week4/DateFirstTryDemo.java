@@ -1,10 +1,65 @@
-public class DateFirstTryDemo {
-    public int day;
-    public String month;
-    public int year;
+import java.util.Scanner;
 
+public class DateFirstTryDemo {
+    private int day;
+    private String month;
+    private int year;
+
+    // constructors
+    public DateFirstTryDemo() {
+        month = "January";
+        day = 1;
+        year = 1000;
+    }
+
+    public DateFirstTryDemo(int monthInt, int day, int year) {
+        setDate(monthInt, day, year);
+    }
+    
+    public DateFirstTryDemo(String monthString, int day, int year) {
+        setDate(monthString, day, year);
+    }
+    
+    public DateFirstTryDemo(int year) {
+        setDate(1, 1, year);
+    }
+
+    public DateFirstTryDemo(Date aDate) {
+        if (aDate == null) {
+            System.out.println("Fatal Error.");
+            System.exit(0);
+        }
+        month = aDate.month;
+        day = aDate.day;
+        year = aDate.year;
+    }
+
+    /**
+    Precondition: All instance variables of the calling object have values.
+    Postcondition: The data in the calling object has been written to the screen.
+    */    
     public void writeOutput() {
-        System.out.println(month + " " + day + ", " + year);
+        System.out.println(this.month + " " + this.day + ", " + this.year);
+    }
+
+    public void readInput() {
+        boolean tryAgain = true;
+        Scanner keyboard = new Scanner(System.in);
+        while (tryAgain) {
+            System.out.println("Enter month, day, and year");
+            System.out.println("as three integers:");
+            System.out.println("do not use commas or other punctuations.");
+            int monthInput = keyboard.nextInt();
+            int dayInput = keyboard.nextInt();
+            int yearInput = keyboard.nextInt();
+            if (dateOK(monthInput, dayInput, yearInput)) {
+                setDate(monthInput, dayInput, yearInput);
+                tryAgain = false;
+            }
+            else
+                System.out.println("Illegal date. Reenter input.");
+        keyboard.close();
+        }
     }
 
     public void makeItNewYears() {
@@ -19,7 +74,7 @@ public class DateFirstTryDemo {
             System.out.println("Not New Years Day.");
     }
     
-    public int getDay() {
+    public int getDay() {  // accessor method 
         return day;
     }
 
@@ -33,14 +88,56 @@ public class DateFirstTryDemo {
             day -= 1;
         }
     }
-    
-    public void setDate(int newMonth, int newDay, int newYear) {
-        month = monthString(newMonth);
-        day = newDay;
-        year = newYear;
+
+    public void setDate(String monthString, int day, int year) {
+        if (dateOK(monthString, day, year)) {
+            this.month = monthString;
+            this.day = day;
+            this.year = year;
+        }
+        else {
+            System.out.println("Fatal Error");
+            System.exit(0);
+        }
     }
 
-    public String monthString(int monthNumber) {
+    public void setDate(int month, int day, int year) {  // mutator method
+        if (dateOK(month, day, year)) {
+            this.month = monthString(month);
+            this.day = day;
+            this.year = year;
+        }
+        else 
+            System.out.println("Fatal Error");
+            System.exit(0);
+    }
+    
+    public void setMonth(int monthNumber) {
+        if ((monthNumber <= 0) || (monthNumber > 12)) {
+            System.out.println("Fatal Error");
+            System.exit(0);
+        }
+        else
+            month = monthString(monthNumber);
+    }
+
+    private boolean dateOK(String monthString, int dayInt, int yearInt) {
+        return ( monthOK(monthString) &&
+                (dayInt >= 1) && (dayInt <= 31) &&
+                (yearInt >= 1000) && (yearInt <= 9999) );
+    }
+
+    private boolean dateOK(int monthInt, int dayInt, int yearInt) {
+        return ((monthInt >= 1) && (monthInt <= 12) &&
+                (dayInt >= 1) && (dayInt <= 31) &&
+                (yearInt >= 1000) && (yearInt <= 9999));
+    }
+
+    public boolean isBetween(int lowYear, int highYear) {
+        return ((year > lowYear) && (year < highYear));
+    }
+
+    private String monthString(int monthNumber) {
         switch (monthNumber) {
             case 1:
                 return "January";
@@ -76,6 +173,5 @@ public class DateFirstTryDemo {
         int year = 1882;
         date.setDate(3, 7, year);
         date.writeOutput();
-    }
-    
+    }    
 }
