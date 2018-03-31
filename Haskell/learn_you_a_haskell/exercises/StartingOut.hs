@@ -11,7 +11,6 @@ isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome [] = False
 isPalindrome xs = reverse xs == xs
 
-
 {-
  - Duplicate the elements in list xs, for example "duplicate [1,2,3]" would 
  - give the list [1,1,2,2,3,3]
@@ -30,8 +29,9 @@ duplicate (x:xs) = x:x:duplicate xs
  - The function "min x y" returns the lower of values x and y
  - "ziplike [1,2,3] ['a','b','c','d'] returns [(1,'a'),(2,'b'),(3,'c')]
  -}
---zipLike :: [a] -> [b] -> [(a,b)]
-zipLike = undefined
+zipLike :: [a] -> [b] -> [(a,b)]
+zipLike (x:xs) (y:ys) = (x,y) : zipLike xs ys
+zipLike _ _ = []
 
 -- Split a list l at element k into a tuple: the first part up to and including
 -- k, the second part after k
@@ -78,5 +78,9 @@ insertElem x k ys = insertElem' x k 0 ys
 
 -- Rotate list l n places left.
 -- For example, "rotate 2 [1,2,3,4,5]" returns [3,4,5,1,2]
-rotate = undefined
+rotate :: Int -> [a] -> [a]
+rotate n xs = ys ++ zs
+    where 
+        ys = drop n xs
+        zs = take n xs
 
