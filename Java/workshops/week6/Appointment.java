@@ -21,6 +21,9 @@ public class Appointment {
         this.endTime = endTime;
         this.date = date;
     }
+    // copy constructor
+    public Appointment(Appointment otherApp) {
+    }
     public AppointmentTime getStartTime() {
         return startTime;
     }
