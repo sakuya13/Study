@@ -4,7 +4,7 @@
 
 - **TODO**
     - [ ] Trip to Japan
-    - [ ] 
+    - [ ] improve debugging skills 
     - [ ] Java
     - [ ] **IELTS vocabulary**
     - [ ] **Japanese learing**

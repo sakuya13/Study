@@ -46,3 +46,6 @@
             - **^Y** to scroll the screen down by holding the Ctrl key and pressing Y
     - ```!cmd [args]``` commandline
     - ```^r %``` copy filename to cursor
+- buffer
+    - ```:bn``` switch buffer
+    
