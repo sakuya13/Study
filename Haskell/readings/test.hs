@@ -8,7 +8,5 @@ magicNumber :: Integer
 magicNumber = 42
 
 magicList = [1,3..]
--- s
 
-{- jhkjhkj
--}
+
