@@ -167,3 +167,6 @@
 - ```$ git pull```
 
     Downloads bookmark history and incorporates changes
+
+###Change log
+-```git diff```

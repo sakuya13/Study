@@ -17,7 +17,7 @@
 - v mode
     - **^ v**: select block
     - **shift v**: select current line
-    -
+    - **control v**: select current colomn
 - delete
     - **dw**: delete current word
     - **x**: delete current character

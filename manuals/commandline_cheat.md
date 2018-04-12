@@ -5,6 +5,8 @@
 - **a="$PWD"**: save current directory to variable a
     - **echo $a**: show value of a
     - **cd $a**: to directory a
+-```echo "alias aliasname='command'" >> ~/.bash_aliases && source ~/.bash_aliases```
+
 ###Files
 - ```cp [file] [new_directory/file]```: copy
 - ```rm [file]```: remove

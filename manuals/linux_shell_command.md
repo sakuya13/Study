@@ -1,0 +1,2 @@
+- show stats of a file
+    - ```stat [filename]```
