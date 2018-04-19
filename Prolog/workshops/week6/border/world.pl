@@ -19,8 +19,8 @@ larger1(C1, C2) :-
     area1(C2, A2),
     A1 > A2.
 
-area1(C, _A) :-
-    country(C,_,_,_,_A_,_,_,_).
+area1(C, A) :-
+    country(C,_,_,_,A,_,_,_).
 
 
 larger2(C1, C2) :-
