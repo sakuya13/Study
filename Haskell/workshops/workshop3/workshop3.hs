@@ -1,7 +1,7 @@
 
 
 -- Q2 properFraction?
--- ftoc :: Double -> Double
+ftoc :: Fractional a => a -> a
 ftoc f = (5/9)*(f-32)
 
 -- Q3
@@ -9,22 +9,33 @@ ftoc f = (5/9)*(f-32)
 quadRoots a b c
     = [((-b) + sqrt (b^2-4*a*c))/2*a, ((-b) - sqrt (b^2-4*a*c))/2*a]
 
+quadRoots' :: (Floating a, Ord a) => a -> a -> a -> [a]
+quadRoots' 0 0 _ = error "Either a or b must be non-zero"
+quadRoots' 0 b c = [-c / b]
+quadRoots' a b c 
+    | disc < 0  = error "No real solutions"
+    | disc == 0 = [tp]
+    | otherwise = [tp + temp, tp - temp]
+    where disc = b*b - 4*a*c
+          temp = sqrt(disc) / (2*a)
+          tp   = -b / (2*a)
+
 -- Q4
-mergeSortedList :: (Ord a) => [a] -> [a] -> [a]
-mergeSortedList [] ys = ys
-mergeSortedList xs [] = xs
-mergeSortedList (x:xs) (y:ys)
-    | x <= y    = x : mergeSortedList xs (y:ys)
-    | otherwise = y : mergeSortedList (x:xs) ys
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] ys = ys
+merge xs [] = xs
+merge xs@(x:xs') ys@(y:ys')
+    | x <= y    = x : merge xs' ys
+    | otherwise = y : merge xs ys'
 
 -- Q5
 quicksort :: Ord t => [t] -> [t]
 quicksort [] = []
-quicksort (x:xs) =
-    quicksort left ++ [x] ++ quicksort right
+quicksort (pivot:xs) =
+    quicksort left ++ [pivot] ++ quicksort right
     where
-        left = filter (<x) xs
-        right = filter (>x) xs
+        left = filter (<pivot) xs
+        right = filter (>=pivot) xs
 
 -- Q6
 data Tree k v = Node k v (Tree k v) (Tree k v)
@@ -61,28 +72,28 @@ eval a b expr =
         Div expr1 expr2 -> eval a b expr1 `div` eval a b expr2
     where eval' = eval a b  -- currying
 
-data BoolExpr
-    = BoolConst Bool
-    | BoolOp BoolOp BoolExpr BoolExpr 
-    | CompOp CompOp IntExpr IntExpr
-
-data IntExpr
-    = IntConst Int
-    | IntOp IntOp IntExpr IntExpr
-    | IntIfThenElse BoolExpr IntExpr IntExpr
-
-data BoopOp = And
-data CompOp = LessThan
-data IntOp = Plus | Times
-
-intExprValue :: IntExpr -> Int
-intExprValue (IntConst i) = i
-intExprValue (IntOp Plus a b)
-    = intExprValue a + intExprValue b
-intExprValue (IntOp Times a b)
-    = intExprValue a * intExprValue b
-intExprValue (IntIfThenElse t a b)
-    = if t then intExprValue a else intExprValue b
-intExprValue (CompOp LessThan a b)
-    = intExprValue a < intExprValue b
+-- data BoolExpr
+--     = BoolConst Bool
+--     | BoolOp BoolOp BoolExpr BoolExpr 
+--     | CompOp CompOp IntExpr IntExpr
+-- 
+-- data IntExpr
+--     = IntConst Int
+--     | IntOp IntOp IntExpr IntExpr
+--     | IntIfThenElse BoolExpr IntExpr IntExpr
+-- 
+-- data BoopOp = And
+-- data CompOp = LessThan
+-- data IntOp = Plus | Times
+-- 
+-- intExprValue :: IntExpr -> Int
+-- intExprValue (IntConst i) = i
+-- intExprValue (IntOp Plus a b)
+--     = intExprValue a + intExprValue b
+-- intExprValue (IntOp Times a b)
+--     = intExprValue a * intExprValue b
+-- intExprValue (IntIfThenElse t a b)
+--     = if t then intExprValue a else intExprValue b
+-- intExprValue (CompOp LessThan a b)
+--     = intExprValue a < intExprValue b
 

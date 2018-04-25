@@ -1,9 +1,16 @@
 -- Q2
-type Size = Integer
-type Face = String
+data FontTag = FontTag (Maybe Int) (Maybe String) (Maybe FontColour)
 
-data Colour = ColourName String | Hex String | Rgb Int Int Int 
-data Font = Font Size Face Colour
+data FontSpecifier 
+    = FontSize Int
+    | FontFace String
+    | FontColour FontColour
+
+data FontColour
+    = ColourName String
+    | Hex Int
+    | RGB Int Int Int
+
 
 -- Q3
 factorial :: Integer -> Integer
@@ -54,9 +61,9 @@ mccarthy91 n = mywhile (1, n)
 
 -- Q7
 buildList :: Int -> Int -> [Int]
-buildList min max
-    | max < min  = error "Max is smaller than Min!"
-    | max == min = [max]
-    | otherwise = min : buildList (min+1) max
+buildList m n
+    | n <  m    = m : buildList (m-1) n
+    | n == m    = [n]
+    | otherwise = m : buildList (m+1) n
 
 

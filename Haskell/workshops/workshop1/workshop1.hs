@@ -8,18 +8,34 @@ xor' a b
     | not a && b = True
     | otherwise  = False
 
+xor'' a b = (a || b) && not (a && b)
+
+myHead :: [a] -> Maybe a
+myHead [] = Nothing
+myHead (x:_) = Just x
+
+myTail :: [a] -> Maybe [a]
+myTail [] = Nothing
+myTail (_:xs) = Just xs
+
 -- Q6
 append :: [a] -> [a] -> [a]
-append [] y     = y
-append (x:xs) y = x : append xs y
+append [] ys     = ys
+append (x:xs) ys = x : append xs ys
 
 -- Q7
 myReverse :: [a] -> [a]
 myReverse zs = myReverse' zs [] 
+    where myReverse' [] temp = temp
+          myReverse' (x:xs) temp = myReverse' xs (x:temp)
 
-myReverse' :: [a] -> [a] -> [a]
-myReverse' [] temp = temp
-myReverse' (x:xs) temp = myReverse' xs (x:temp)
+myReverse' :: [a] -> [a]
+myReverse' [] = []
+myReverse' (x:xs) = myReverse' xs ++ [x]
+
+myReverse'' :: [a] -> [a]
+myReverse'' = foldl (flip (:)) []
+
 
 -- Q8
 getNthElem :: Int -> [a] -> a
