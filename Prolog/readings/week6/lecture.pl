@@ -112,3 +112,9 @@ take2(N, List, Front) :-
     append(Front, _, List),
     length(Front, N).
 
+
+revTro([], A, A).
+revTro([B|CD], A, DCBA) :-
+    revTro(CD, [B|A], DCBA).
+
+

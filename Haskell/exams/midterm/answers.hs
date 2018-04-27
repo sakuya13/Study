@@ -1,0 +1,13 @@
+-- what is the type of Just
+-- Just :: a -> Maybe a
+-- 
+-- \x -> filter (==x)
+-- Eq a => a -> [a] -> [a]
+-- 
+-- 7.5
+-- Double or Fractional => a -> a
+--
+--(>3) . head
+--(Num a, Ord a) -> [a] -> Bool
+--
+--
