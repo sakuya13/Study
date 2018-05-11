@@ -64,7 +64,3 @@ intset_insert(N, tree(L, N0, R0), tree(L, N0, R)) :-
     N > N0,
     intset_insert(N, R0, R).
 
-pig(fat).
-cat(cute).
-look(pig,fat).
-look(cat,cute).

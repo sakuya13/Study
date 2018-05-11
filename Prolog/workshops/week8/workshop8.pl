@@ -35,4 +35,17 @@ tree_list1(node(Left, Elt, Right), List, List0) :-
     tree_list1(Right, List2, List0).
 
 
+% Q4
+list_tree([], empty).
+list_tree(List, node(Left, Elt, Right)) :-
+    divide(List, First, Elt, Rest),
+    list_tree(First, Left),
+    list_tree(Rest, Right).
 
+divide([Head|List], First, Elt, Rest) :-
+    length(List, Len),
+    N is Len // 2,
+    append(First, [Elt|Rest], [Head|List]),
+    length(First, N).
+
+    
