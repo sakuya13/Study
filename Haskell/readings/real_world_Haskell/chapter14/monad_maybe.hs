@@ -1,5 +1,11 @@
 -- unwrap a
 -- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+
+-- flipped ver of unwrap a
+-- (=<<) :: Monad m => (a -> m b) -> m a -> m b
+
+wordCount = print . length . words =<< getContents
+
 -- wrap a
 -- return :: Monad m => a -> m a
 

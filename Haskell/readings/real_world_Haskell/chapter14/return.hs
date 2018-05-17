@@ -2,7 +2,8 @@ main :: IO ()
 main = do
     putStrLn "Please input a string"
     len <- readlen
-    putStrLn $ "The length of the string is " ++ show len -- show here convets Int to String
+    putStrLn $ "The length of the string is " ++ show len 
+    -- show: convets Int to String
 
 readlen :: IO Int
 readlen = do

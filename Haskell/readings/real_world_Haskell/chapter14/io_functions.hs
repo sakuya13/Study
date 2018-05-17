@@ -3,6 +3,7 @@ getChar :: IO Char
 getLine :: IO String
 
 () :: () -- void
+
 putChar :: Char -> IO ()
 
 putStr :: String -> IO ()
