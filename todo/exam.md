@@ -1,4 +1,4 @@
-# DAYS   LEFT
+# 30 DAYS LEFT 
 - **exams**
     - DP 18 June: must memorise Prelude (content covered in the lecture)
     - ETI 18 June: memorise everything in the slides (especially ones with
