@@ -49,6 +49,36 @@ instance Regex ABAB where
   isMatch ExtraA = True
   isMatch _ = False
 
+-- "ab(ab)*a*"
+data ABABA =
+    ABABAFirstA      -- awaiting first "a"
+  | ABABAFirstB      -- consumed first "a", awaiting first "b"
+  | ABABAThenAB      -- consumed "ab", awaiting "a", or accept (get "ab")
+  | ABABAThenABA     -- consumed "aba", awaiting "a" or "b", or accept 
+                --     (get "abaa", "abab")
+  | ABABAFinalA      -- consumed "abaa*", awaiting "a", or accept
+                --      (get "ab(ab)*a......")
+  | ABABAThenABAB    -- consumed "abab", awaiting "a", or accept
+                --      (get "abab" or "abababababab....")
+  | InvalidABABA
+instance Regex ABABA where
+    startRegex = ABABAFirstA
+
+    thenChar ABABAFirstA 'a' = ABABAFirstB
+    thenChar ABABAFirstB 'b' = ABABAThenAB
+    thenChar ABABAThenAB 'a' = ABABAThenABA
+    thenChar ABABAThenABA 'a' = ABABAFinalA
+    thenChar ABABAThenABA 'b' = ABABAThenABAB
+    thenChar ABABAFinalA 'a' = ABABAFinalA
+    thenChar ABABAThenABAB 'a' = ABABAThenABA
+    thenChar _ _ = InvalidABABA
+
+    isMatch ABABAThenAB = True
+    isMatch ABABAThenABA = True
+    isMatch ABABAThenABAB = True
+    isMatch ABABAFinalA = True
+    isMatch _ = False
+
 -- | Data type for the regular expression "a..b".
 data AxxB =
     Start       -- ^ Awaiting the first 'a' character.
@@ -81,6 +111,8 @@ main = do
   let match1 = isMatch (parse string :: AB)
       match2 = isMatch (parse string :: ABAB)
       match3 = isMatch (parse string :: AxxB)
+      match4 = isMatch (parse string :: ABABA)
   putStrLn $ "Does '" ++ string ++ "' match '(ab)*'?    " ++ show match1
   putStrLn $ "Does '" ++ string ++ "' match 'ab(ab)*'?  " ++ show match2
   putStrLn $ "Does '" ++ string ++ "' match 'a..b'?     " ++ show match3
+  putStrLn $ "Does '" ++ string ++ "' match 'ab(ab)*a*'?     " ++ show match4
