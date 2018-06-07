@@ -105,3 +105,11 @@ nums = [10*a+b | a <- [1,2,3], b <- [1,2,3]]
 -- map (+1) :: (Num a) => [a] -> [a]
 
 
+
+-- TODO: other useful higher order functions (from section 16)
+-- any :: (a -> Bool) -> [a] -> Bool
+-- all :: (a -> Bool) -> [a] -> Bool
+-- all (elem 'e') ["eclectric", "elephant", "legion"]
+-- any (\x -> elem x "aeiou") "sky"
+-- any (flip elem "aeiou") "hmmmm"
+
