@@ -94,7 +94,7 @@ returns a fresh new map which can be used as the empty symbol table.
 \begin{code}
 
 processSymbols :: [(Symbol, Info)] -> SymbolTable
-process pairs = undefined
+processSymbols pairs = snd (runState (insertSymbols pairs) empty)
 
 \end{code}
 
@@ -116,7 +116,7 @@ Finish the lookup section below before returning to this function.
 \begin{code}
 
 processInput :: [Symbol] -> SymbolTable -> [Maybe Info]
-processInput symbs table = undefined
+processInput symbs table = fst (runState (lookupSymbols symbs) table)
 
 \end{code}
 
@@ -132,7 +132,7 @@ Think about how the state (the symbol table) is passed between the two functions
 \begin{code}
 
 process :: [(Symbol, Info)] -> [Symbol] -> [Maybe Info]
-process pairs symbs = undefined
+process pairs symbs = processInput symbs (processSymbols pairs)
 
 \end{code}
 
@@ -146,8 +146,23 @@ If the symbol is not found, print out the information as "unknown symbol".
 
 \begin{code}
 
+printProcessed1 :: [Maybe Info] -> IO ()
+printProcessed1 [] = return ()
+printProcessed1 (m:mis)
+    | m == Nothing = do
+        putStrLn "unknwon symbol"
+        printProcessed1 mis
+    | otherwise    = do
+        print m
+        printProcessed1 mis
+
 printProcessed :: [Maybe Info] -> IO ()
-printProcessed mis = undefined
+printProcessed [] = return ()
+printProcessed (m:mis) = do  -- chain case m of and the recursive call together
+    case m of
+        Nothing -> putStrLn "unknwon symbol"
+        Just s -> putStrLn s  -- upwrap Maybe monad (filter Just)
+    printProcessed mis
 
 \end{code}
 
@@ -216,7 +231,10 @@ using our `Maintainer` type.
 \begin{code}
 
 insertSymbol :: Symbol -> Info -> Maintainer ()
-insertSymbol symbol info = undefined
+insertSymbol symbol info = do
+    table <- get
+    put $ insert symbol info table
+    --return ()
 
 \end{code}
 
@@ -230,7 +248,10 @@ that is similar to `insertSymbol` but do the job for a list of symbols.
 
 insertSymbols :: [(Symbol, Info)] -> Maintainer ()
 insertSymbols [] = return ()
-insertSymbols (x:xs) = undefined
+insertSymbols ((symbol, info):xs) = do
+    insertSymbol symbol info
+    insertSymbols xs
+    --return ()
 
 \end{code}
 
@@ -260,7 +281,10 @@ Note that you should probably retain the `Maybe` monad.
 \begin{code}
 
 -- lookupSymbol :: ???
-lookupSymbol = undefined
+lookupSymbol :: Symbol -> Maintainer (Maybe Info)
+lookupSymbol symbol = do
+    table <- get
+    return $ Data.Map.lookup symbol table
 
 \end{code}
 
@@ -271,6 +295,11 @@ And the list of symbols version of lookup as well.
 \begin{code}
 
 -- lookupSymbols :: ???
-lookupSymbols = undefined
+lookupSymbols :: [Symbol] -> Maintainer [Maybe Info]
+lookupSymbols [] = return []
+lookupSymbols (s:symbols) = do
+    i <- lookupSymbol s
+    is <- lookupSymbols symbols
+    return (i:is)
 
 \end{code}

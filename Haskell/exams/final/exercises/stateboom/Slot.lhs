@@ -45,7 +45,11 @@ HINT: you will need to write it using the `Counter` type.
 \begin{code}
 
 -- nextSlot :: ???
-nextSlot = undefined
+nextSlot :: Counter Int -- equivalent to State Int Int
+nextSlot = do
+    n <- get
+    put (n+1)
+    return n
 
 \end{code}
 
@@ -58,7 +62,10 @@ wrapping the pair, instead of just being the pair. Why?
 \begin{code}
 
 assignSlot :: a -> Counter (a, Int)
-assignSlot x = undefined
+assignSlot x = do
+    n <- nextSlot
+    return (x, n)
+
 
 \end{code}
 
@@ -72,8 +79,12 @@ HINT: what its return type should be?
 \begin{code}
 
 -- assignSlots :: [a] -> ???
-assignSlots [] = undefined
-assignSlots (x:xs) = undefined
+assignSlots :: [a] -> Counter [(a, Int)]
+assignSlots [] = return []
+assignSlots (x:xs) = do
+    slot  <- assignSlot x
+    slots <- assignSlots xs
+    return $ slot:slots
 
 \end{code}
 
@@ -96,7 +107,7 @@ HINT: what's the start state?
 \begin{code}
 
 assign :: [a] -> [(a, Int)]
-assign xs = undefined
+assign xs = evalState (assignSlots xs) 0
 
 \end{code}
 

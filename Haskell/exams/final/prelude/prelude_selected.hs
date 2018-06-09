@@ -1,0 +1,186 @@
+-- data Bool
+-- not :: Bool -> Bool
+-- otherwise :: Bool
+--
+-- data Maybe a
+-- Nothing :: Maybe a
+-- Just :: a -> Maybe a
+--
+-- maybe :: b -> (a -> b) -> Maybe a -> b
+-- >>> maybe False Odd (Just 1)
+-- >>> True
+-- >>> maybe False Nothing
+-- >>> False
+--
+-- data Ordering
+-- LT :: Ordering
+-- EQ :: Ordering
+-- GT :: Ordering
+-- 
+-- Tuples
+-- fst :: (a,b) -> a
+-- snd :: (a,b) -> b
+-- 
+-- class Eq a where
+-- (==) :: Eq a => a -> a -> Bool
+--
+-- compare :: Eq a => a -> a -> Ordering
+-- (<) :: Eq a => a -> a -> Bool
+-- max :: Eq a => a -> a -> a
+-- min :: Eq a => a -> a -> a
+--
+-- class Num a where
+-- (+) :: Num a => a -> a -> a
+-- negate :: Num a => a -> a
+-- abs :: Num a => a -> a
+-- fromInteger :: Num a => Integer -> a
+--
+-- class Integral a where    -- supporting integer division
+-- div :: Integral a => a -> a -> a
+-- mod :: Integral a => a -> a -> a
+-- rem :: Integral a => a -> a -> a
+-- toInteger :: Integral a => a -> Integer
+-- 
+-- fromIntegral :: (Num b, Integral a) => a -> b
+--
+-- class Fractional a where    -- supporting real division
+-- (/) Fractional a => a -> a -> a
+-- 
+-- class Floating a where
+-- pi :: Floating a => a
+-- sqrt :: Floating a => a -> a
+-- (**) :: Floating a => a -> a
+-- 
+-- class RealFrac a where
+-- truncate :: (Integral b, RealFrac a) => a -> b  -- delete floating point directly
+-- round :: (Integral b, RealFrac a) => a -> b -- normal round
+-- ceiling :: (Integral b, RealFrac a) => 
+-- floor :: (Integral b, RealFrac a) => a -> b  -- round to floor
+--
+-- numeric functions
+-- even :: Integral a => a -> Bool
+-- odd :: Integral a => a -> Bool 
+--
+-- gcd :: Integral a => a -> a -> a
+-- lcm :: Integral a => a -> a -> a  -- smallest positive integer both x y have
+--
+-- (^) :: (Num a, Integral b) => a -> b -> a  -- raise a number to a non-negarive integral power
+-- (^^) :: (Fractional a, Integral b) => a -> b -> a  -- raise a number to an integral power
+-- fromIntegral :: (Integral a, Num b) => a -> b  -- coerce a an integral to a Num type
+-- 
+-- 
+-- class Functor f where
+-- laws:
+-- fmap id == id
+-- fmap (f . g) = fmap f . fmap g
+--
+-- fmap :: Functor f => (a -> b) -> f a -> f b
+-- (<$>) :: Functor f => (a -> b) -> f a -> f b  -- infix synonym for fmap
+-- (*2) <$> [1,2,3]
+--
+-- map :: (a -> b) -> [a] -> [b]
+-- ($) :: (a -> b) -> a -> b  -- function application
+-- odd $ 1*2
+--
+-- class Monad m where TODO
+-- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+-- (>>) :: Monad m => m a -> m b -> m b
+-- return :: Monad m => a -> m a
+-- (=<<) :: Monad m => (a -> m b) -> m a -> m b
+--
+--
+-- class Foldable t where
+-- foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+-- foldr1 :: Foldable t => (a -> a -> a) -> t a -> a
+-- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+-- foldl1 :: Foldable t => (a -> a -> a) -> t a -> a
+--
+-- elem :: (Foldable t, Eq a) => a -> t a -> Bool
+-- maximum :: (Foldable t, Ord a) => t a -> a
+-- minimum :: (Foldable t, Ord a) => t a -> a
+-- sum :: (Foldable t, Num a) => t a -> a
+-- product :: (Foldable t, Num a) => t a -> a
+--
+--
+-- miscellaneous functions
+-- id :: a -> a
+-- const :: a -> b -> a  -- e.g. map const 42 [0..3] = [42,42,42,42]
+-- (.) :: (b -> c) -> (a -> b) -> a -> c
+-- flip :: (a -> b -> c) -> b -> a -> c  -- flip filter "hello" (=='h') = "h"
+-- ($) :: (a -> b) -> a -> b  -- f $ g % h x = f (g (h x))
+--
+--
+-- list operations
+-- map :: (a -> b) -> [a] -> [b]
+-- (++) :: [a] -> [a] -> [a]
+-- filter :: (a -> Bool) -> [a] -> [a] -- filter p xs = [x | x <- xs, p x]
+-- head :: [a] -> a  -- list must be non-empty
+-- last :: [a] -> a  -- TODO: non-empty and finite
+-- tail :: [a] -> a  -- non-empty
+-- init :: [a] -> a  -- non-empty
+-- null :: Foldable t => t a -> Bool  -- test if list is empty
+-- length :: Foldable t => t a -> Int
+-- reverse :: [a] -> [a]
+-- (!!) :: [a] -> Int -> [a]  -- takes a list and a index, returns the item of
+--                            -- the indexm, index starting from 0. e.g. [1..10] !! 3 = 4
+-- 
+-- special folds
+-- and :: Foldable t => t Bool -> Bool  -- and [True, True] = True
+--                                      -- and [True, False] = False
+-- or :: Foldable t => t Bool -> Bool
+-- any :: Foldable t => (a -> Bool) -> t a -> Bool -- any (>2) [1,2,3] = true
+-- all :: Foldable t => (a -> Bool) -> t a -> Bool
+-- concat :: Foldable t => t [a] -> [a]  -- concat [[1,2],[3,4]] = [1,2,3,4]
+-- concatMap :: Foldable t => (a -> [b]) -> t a -> [b] -- concatMap 
+--              e.g. concatMap (\x -> [(x,x+1)]) [1,3,5] = [(1,2),(3,4),(5,6)]
+--                   concatMap (\x -> [x..5]) [1,2] = [1,2,3,4,5,2,3,4,5]
+--
+--
+-- infinite lists
+-- repeat :: a -> [a]
+-- replicate :: Int -> a -> [a]  -- replicate 5 'a' = "aaaaa"
+-- cycle :: [a] -> [a]  -- cycle "abc" = "abcabcabc..."
+--
+--
+-- sublist
+-- take :: Int -> [a] -> [a]
+-- drop :: Int -> [a] -> [a]
+-- splitAt :: Int -> [a] -> ([a],[a]) -- splitAt 3 [1,2,3,4,5] = ([1,2,3],[4,5])
+-- takeWhile :: (a -> Bool) -> [a] -> [a]  -- takeWhile (<3) [1,2,3,4,5] = [1,2]
+-- dropWhile :: (a -> Bool) -> [a] -> [a]  -- dropWhile (<3) [1,2,3,4,5] = [3,4,5]
+-- 
+--
+-- zipping
+-- zip :: [a] -> [b] -> [(a,b)]
+-- zip3 :: [a] -> [b] -> [c] -> [(a,b,c)]
+-- zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+-- 
+--
+-- finction on strings
+-- lines :: String -> [String] -- lines "one\ntwo" = ["one","two"]
+-- words :: String -> [String] -- lines "one two" = ["one","two"]
+
+
+-- converting to String
+-- class Show a where
+-- show :: a -> String
+-- 
+-- EXTRA: type ShowS = String -> String
+-- shows :: Show a => a -> ShowS
+--
+-- class Read a where
+-- read :: Read a => String -> a  -- read "123" :: Int = 123
+--                                -- read "123" :: Double = 123.0
+--
+-- I/O
+-- data IO a
+-- output functions:
+-- putChar :: Char -> IO ()  -- write a Char with no newline
+-- putStr :: String -> IO ()
+-- putStrLn :: String -> IO () -- adds newline can only take String
+-- print :: Show a => a -> IO () -- adds newline can take a function and print its output (if output's type are instances of class Show)
+--                               -- main = print ([(n,2^n) | n <- [0..19]])
+-- input functions:
+-- getChar :: IO Char
+-- getLine :: IO String
+
