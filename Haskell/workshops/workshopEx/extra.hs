@@ -57,4 +57,7 @@ map2 :: (a -> b) -> [a] -> [b]
 map2 f = foldr fxs []
     where fxs x base = (f x):base
 
--- Q8
+-- Q8 
+
+
+
