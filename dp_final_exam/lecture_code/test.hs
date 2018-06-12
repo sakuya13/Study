@@ -48,3 +48,10 @@ dropWhileEnd1 p = foldr (\x xs ->
                         ) []
 
 
+filter1 :: (a -> Bool) -> [a] -> [a]
+filter1 _ [] = []
+filter1 f (x:xs) =
+    if f x then x:filtered
+    else filtered
+    where
+        filtered = filter1 f xs
