@@ -9,7 +9,14 @@ s(a,b).
 
 
 % Question 5
-
+intset_insert(N,empty,tree(empty,N,empty)).
+intset_insert(N,tree(L,N,R),tree(L,N,R)).
+intset_insert(N,tree(L0,N0,R),tree(L,N0,R)) :-
+    N < N0,
+    intset_insert(N,L0,L).
+intset_insert(N,tree(L,N0,R0),tree(L,N0,R)) :-
+    N > N0,
+    intset_insert(N,R0,R).
 
 
 % Qustion 6

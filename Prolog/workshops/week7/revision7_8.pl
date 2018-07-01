@@ -29,6 +29,13 @@ before(E1,E2,[_|Rest]) :-
     before(E1,E2,Rest).
 
 
+rev(Xs,Ys) :- rev(Xs,[],Ys).
+
+rev([],Ys,Ys).
+rev([X|Xs],Acc,Ys) :-
+    rev(Xs,[X|Acc],Ys).
+
+
 % Q6
 intset_member(N,tree(_,N,_)).
 intset_member(N,tree(Left,N0,_)) :-
