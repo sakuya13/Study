@@ -10,20 +10,23 @@
 -- (e): 3 TODO: lazy evaluation?
 
 
--- Q3: allslides.pdf p.403
--- wrap the number representing distance in feet and meters in a data 
--- constructor, that is a unit. for example:
-data FeetDistance = Feet Double
-data MetersDistance = Meters Double
 
-feet_to_feetDistance :: Double -> FeetDistance
-feet_to_feetDistance f = Feet f
+-- Q3
+-- We can distinguish different Units through defining it in the
+-- algebraic type system. Wrap them up in the data constructor
+-- to avoid the mixture. For example:
+data Distance = Meter Double
 
-meter_to_meterDistance :: Double -> MetersDistance
-meter_to_meterDistance m = Meters m
+meter_to_Distance :: Double -> Distance
+meter_to_Distance m = Meter m
 
-add_meterDistance :: MetersDistance -> MetersDistance -> MetersDistance
-add_meterDistance (Meters a) (Meters b) = Meters (a+b)
+feet_to_distance :: Double -> Distance
+feet_to_distance f = Meter (f*0.3048)
+
+add_distances :: Distance -> Distance -> Distance
+add_distances (Meter a) (Meter b) = Meter (a+b)
+
+
 
 
 -- Q4 
@@ -32,7 +35,7 @@ data Card = C1 | C2 | C3 | C4 | C5
             deriving (Show, Ord, Eq)
 -- (<) is the defined in the Ord type class,
 -- deriving ensures that Card is in the Ord class 
--- and makes (<) compatison operation effective.
+-- and makes (<) comparison operation effective.
 -- The order of the comparison will the order of the definition above,
 -- from smaller (left-hand side) to larger (right-hand side).
 
