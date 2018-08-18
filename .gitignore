@@ -12,3 +12,6 @@
 *.question
 *.answer
 TODO.md
+
+AI/*
+
