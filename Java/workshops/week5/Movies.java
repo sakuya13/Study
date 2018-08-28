@@ -11,21 +11,21 @@ public class Movies {
         System.out.println(rank + ". " + movie);
     }
     
-//    public static void printMovies(String Movies) {
-//        StringTokenizer tk = new StringTokenizer(movies, ", "); //the extra args will only add more delimiters but still keep the space
-//        int i = 1;
-//        while (tk.hasMoreTokens()) {
-//            System.out.println(i + ". " + tk.nextToken());
-//            i ++;
-//        }
-//    }
-
     public static void printMovies(String movies) {
-        String[] movieStrings = movies.split(", "); // use split() to define a specific delimiter
-        for (int i=0; i < movieStrings.length; i++) {
-            System.out.println((i+1) + ". " + movieStrings[i]);
+        StringTokenizer tk = new StringTokenizer(movies, ","); //the extra args will only add more delimiters but still keep the space
+        int i = 1;
+        while (tk.hasMoreTokens()) {
+            System.out.println(i + ". " + tk.nextToken().replaceAll("^\\s", ""));
+            i++;
         }
     }
+
+//    public static void printMovies(String movies) {
+//        String[] movieStrings = movies.split(", "); // use split() to define a specific delimiter
+//        for (int i=0; i < movieStrings.length; i++) {
+//            System.out.println((i+1) + ". " + movieStrings[i]);
+//        }
+//    }
 
     public static boolean isAFavourable(String movie) {
         return FAVOURABLE.contains(movie);
