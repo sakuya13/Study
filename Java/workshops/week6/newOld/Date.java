@@ -14,6 +14,15 @@ public class Date {
         month = "January";
         year = 2000;
     }
+    
+    // copy constructor
+    public Date(Date original) {
+        day = original.day;
+        month = original.month;
+        year = original.year;
+    }
+
+
 
     public int getDay() {
         return day;
