@@ -14,6 +14,7 @@ public class Student {
         }
     }
 
+    // copy constructor
     public Student(String name, int number, String username, Subject[] enrollList) {
         this.name = name;
         this.number = number;
@@ -23,7 +24,8 @@ public class Student {
             this.enrollList[i] = enrollList[i];
         }
     }
-
+    
+    
     public Student(Student student) {
         this.name = student.name;
         this.number = student.number;

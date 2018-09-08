@@ -51,7 +51,7 @@ public class Subject {
     public Student[] getStudentList() {
         Student[] copyList = new Student[1000];
         for (int i = 0; i < studentList.length; i++) {
-            if (studentLis[i] != null) {
+            if (studentList[i] != null) {
                 copyList[i] = new Student(studentList[i]);
             }
         }
