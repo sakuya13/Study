@@ -3,7 +3,7 @@ public class Student {
     private int number = 0;
     private String username = null;
     private Subject[] enrollList = new Subject[4];
-        
+
     public Student() {
         name = "undefined";
         number = 0;
@@ -19,10 +19,7 @@ public class Student {
         this.name = name;
         this.number = number;
         this.username = username;
-
-        for (int i = 0; i < enrollList.length; i++) {
-            this.enrollList[i] = enrollList[i];
-        }
+        this.enrollList = copy(enrollList);
     }
     
     
@@ -30,12 +27,18 @@ public class Student {
         this.name = student.name;
         this.number = student.number;
         this.username = student.username;
+        this.enrollList = copy(student.enrollList);
+    }
 
-        for (int i = 0; i < enrollList.length; i++) {
-            if (student.enrollList[i] != null){
-                this.enrollList[i] = student.enrollList[i];
+    // TODO: there is no copy constructors for an array
+    public static Subject[] copy(Subject[] origin) {
+        Subject[] newArray = new Subject[origin.length];
+        for (int i = 0; i < origin.length; i++) {
+            if (origin[i] != null) {
+                newArray[i] = origin[i];
             }
         }
+        return newArray;
     }
 
 
@@ -64,15 +67,9 @@ public class Student {
     }
     
     public Subject[] getEnrollList() {
-        Subject[] newList = new Subject[4];
-        for (int i = 0; i < newList.length; i++) {
-            if (enrollList[i] != null) {
-                newList[i] = new Subject(enrollList[i]);
-            }
-        }
-        return newList;
+        return copy(enrollList);
     }
-
+    
     public String toString() {
         return name + " " + Integer.toString(number) + " " + username + "\n" + enrollList[0] +
                 "\n" + enrollList[1] + "\n" + enrollList[2] + "\n" + enrollList[3];

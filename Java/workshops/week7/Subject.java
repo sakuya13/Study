@@ -17,9 +17,7 @@ public class Subject {
         this.code = code;
         this.title = title;
         this.coordinator = coordinator;
-        for (int i = 0; i < studentList.length; i++) {
-            this.studentList[i] = studentList[i];
-        }
+        this.studentList = copy(studentList);
     }
    
 
@@ -28,11 +26,17 @@ public class Subject {
         this.code = subject.code;
         this.title = subject.title;
         this.coordinator = subject.coordinator;
-        for (int i = 0; i < studentList.length; i++) {
-            if (subject.studentList[i] != null) {
-                this.studentList[i] = subject.studentList[i];
+        this.studentList = copy(subject.studentList);
+    }
+    
+    public static Student[] copy(Student[] origin) {
+        Student[] newArray = new Student[origin.length];
+        for (int i = 0; i < origin.length; i++) {
+            if (origin[i] != null) {
+                newArray[i] = origin[i];
             }
         }
+        return newArray;
     }
 
 
@@ -49,13 +53,7 @@ public class Subject {
     }
 
     public Student[] getStudentList() {
-        Student[] copyList = new Student[1000];
-        for (int i = 0; i < studentList.length; i++) {
-            if (studentList[i] != null) {
-                copyList[i] = new Student(studentList[i]);
-            }
-        }
-        return copyList;
+        return copy(studentList);
     }
 
     public void setCode(String code) {
