@@ -12,8 +12,6 @@ public class TennisShoe extends Shoe {
         super(color, designer, size);
         this.sole = sole;
         this.canvas = canvas;
-
-
     }
 
     /**
